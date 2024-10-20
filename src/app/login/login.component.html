@@ -1,0 +1,26 @@
+<div class="w-screen h-screen flex align-content-center justify-content-center ">
+    <div class="surface-overlay w-11 md:w-7 lg:w-5 m-auto shadow-6 p-5 border-round-xl">
+        <h2 class="text-center text-3xl lg:text-5xl cursor-pointer">CartNest</h2>
+        <form [formGroup]="loginform" (ngSubmit)="login()">
+            <div class="field">
+                <label for="email">Email address</label>
+                <input id="email" placeholder="enter email address" type="email" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="email">
+            </div>
+            <div class="field">
+                <label for="password" class="flex-custom">Password <a class="text-primary hover:underline" [routerLink]="['/reset']">Forgot password</a> </label> 
+                <input feedback="false"  id="password" type="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pPassword formControlName="password">
+            </div>
+            <div class="field">
+                <p-checkbox name="remember"  label="Remember me"></p-checkbox>
+            </div>
+            <div class="field text-center mt-5">
+                <button type="submit" pButton label="LOGIN" class="w-9 m-auto text-center h-3rem" severity="success" [disabled]="loginform.invalid"></button>
+            </div>
+        </form>
+        <div class="  ">
+            
+        </div>
+    </div>
+</div>
+
+<p-toast></p-toast>

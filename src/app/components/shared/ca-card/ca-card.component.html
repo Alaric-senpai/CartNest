@@ -1,0 +1,10 @@
+<p-card pRipple styleClass="w-full h-full p-2 m-1  shadow-4 hover:shadow-6 relative overflow-hidden border-round-3xl transition-duration-500 ">
+    <ng-template pTemplate="header" class="w-full h-full">
+        <img src=" {{ imageurl }} " alt="" class="w-full h-16rem border-round-3xl">
+    </ng-template>
+    <div class=" absolute hoverable w-full h-full flex align-items-center justify-content-center ">
+
+    <p-button  [label]="catname" icon="pi pi-chevron-right" iconPos="right"   styleClass="p-3 w-full border-round-2xl" [routerLink]="['../category', catid ]" />
+
+    </div>
+</p-card>

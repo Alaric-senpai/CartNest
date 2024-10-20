@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+// @import "primeng/resources/themes/lara-light-blue/theme.css";
+// @import "primeng/resources/primeng.css";
+// @import "../node_modules/quill/dist/quill.core.css";
+// @import "../node_modules/quill/dist/quill.snow.css";
+
+@import 'primeflex/primeflex.scss';
+.mybutton {
+    @include styleclass('bg-blue-500 hover:bg-blue-600 border-round transition-colors transition-duration-150 p-3 border-none');
+}
+
+.flex-custom{
+    @include styleclass('flex align-items-center justify-content-between px-2');
+}
+.input-field{
+    @include styleclass('text-base text-color p-2 border-2 border-solid border-round hover:border-primary focus:border-blue-400 w-full appearance-none outline-none');
+}
+
+.cshidden{
+    @include styleclass('hidden lg:block')
+}
+
+*{
+    padding: 0 ;
+    margin: 0 ;
+    scroll-behavior: smooth;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+html{
+    width: 100dvw;
+    height: 100dvh;
+    overflow-x: hidden !important;
+}
+
+::-webkit-scrollbar{
+    display: none;
+
+}

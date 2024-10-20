@@ -1,0 +1,110 @@
+<div class="p-3">
+    <div class="p-2 ">
+
+        <h2>Add a new product</h2>
+        <form action="">
+            <div class="grid shadow-4 mt-3 border-round-2xl p-3 min-h-full">
+
+                <div class="col-12 lg:col-7">
+                    
+                    <div class="mb-3">
+                        <div class="flex flex-column gap-2">
+                            <label for="product">Main image link </label>
+                            <input
+                                class="p-1 px-2 h-3rem" 
+                                pInputText 
+                                id="image"
+                                (change)="setpreview()" 
+                                 />
+                        </div>
+                    </div>
+
+                    <div class="mb-3 p-3">
+                        <label> Other images</label> <br>
+                        <p-button icon="pi pi-iconName" label="Add image" styleClass="p-2 w-2 m-auto" severity="success"></p-button>
+                    </div>
+
+                    <div class="mb-3 h-full">
+                        <label for="">Product Description</label>
+                        <!-- <p-editor [style]="{height : '320px'}"></p-editor> -->
+                    </div>
+                </div>
+                <div class="col-12 md:col-5">
+                <div class="mb-3">
+                    <label for="" class="my-2">preview image</label>
+                    <img [src]="previewimage" alt="product image" class="mt-2 w-full p-2 h-15rem shadow-2" >
+                </div>
+
+                <div class="mb-3">
+                    <div class="flex flex-column gap-2">
+                        <label for="product">Product Name </label>
+                        <input
+                            class="p-1 px-2 h-3rem" 
+                            pInputText 
+                            id="product" 
+                             />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="flex flex-column gap-2">
+                        <label for="category">Category Name </label>
+                        <p-inputGroup styleClass="flex-custom gap-1">
+                        <select name="" id="" pInputText class="p-1 px-2 h-3rem">
+                            <optgroup *ngIf="categories.length >0" label="Available categories">
+                                <option [value]="category.id" *ngFor=" let category of categories" class="h-2rem hover:bg-primary transition-duration-500">
+                                    {{ category.category_name }}
+                                </option>
+                            </optgroup>
+                            <optgroup *ngIf="categories.length == 0 ">
+                                <option value="" disabled selected>
+                                    loading categories
+                                </option>
+                            </optgroup>
+                        </select>
+                        <p-button icon="pi pi-refresh" styleClass="p-2 h-3rem" outlined="true" severity="primary" (onClick)="fetchcategories()" />
+                        </p-inputGroup>
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <div class="flex flex-column gap-2">
+                        <label for="price">Price </label>
+                        <input
+                            class="p-1 px-2 h-3rem" 
+                            pInputText 
+                            id="price" 
+                             />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="flex flex-column gap-2">
+                        <label for="stock">product count </label>
+                        <input
+                            class="p-1 px-2 h-3rem" 
+                            pInputText 
+                            id="stock" 
+                             />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="flex flex-column gap-2">
+                        <label for="brand">Brand Name </label>
+                        <input
+                            class="p-1 px-2 h-3rem" 
+                            pInputText 
+                            id="brand" 
+                             />
+                    </div>
+                </div>
+
+                </div>
+                <div class="col-12">
+                    <p-button icon="pi pi-iconName" label="Add product" styleClass="p-2 w-6 m-auto" severity="success"></p-button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

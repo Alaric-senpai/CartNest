@@ -1,0 +1,83 @@
+ <h3 class="text-xl md:text-2xl lg:text-3xl">System data  view</h3>
+
+
+<p-tabView styleClass="w-11 mx-auto my-3 text-center border-roun-xl shadow-4 p-3 " >
+    <p-tabPanel >
+        <ng-template pTemplate="header">
+            <div class="flex  font-bold white-space-nowrap h-2rem w-12rem  align-items-center justify-content-center">
+                Admins
+            </div>
+        </ng-template>
+        <div class="p-2 flex  flex-column-reverse lg:flex-row  flex-1 gap-2">
+            <div class="">
+                <p-chart type="bar" [data]="admindata" [options]="options" ></p-chart>
+            </div>
+            <div class="border-bottom-2 lg:border-0">
+                <h4>Admin summary growth</h4>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel >
+        <ng-template pTemplate="header">
+            <div class="flex  font-bold white-space-nowrap h-2rem w-12rem  align-items-center justify-content-center">
+                Vendors
+            </div>
+        </ng-template>
+
+        <div class="p-2 flex  flex-column-reverse lg:flex-row  flex-1 gap-2">
+            <div class="">
+                <p-chart type="bar" [data]="vendordata" [options]="options" ></p-chart>
+            </div>
+            <div class="border-bottom-2 lg:border-0">
+                <h4>vendor summary growth</h4>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel >
+        <ng-template pTemplate="header">
+            <div class="flex  font-bold white-space-nowrap h-2rem w-12rem  align-items-center justify-content-center">
+                Customer
+            </div>
+        </ng-template>
+        <div class="p-2 flex  flex-column-reverse lg:flex-row  flex-1 gap-2">
+            <div class="">
+                <p-chart type="bar" [data]="vendordata" [options]="options" ></p-chart>
+            </div>
+            <div class="border-bottom-2 lg:border-0">
+                <h4>Customers summary growth</h4>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel >
+        <ng-template pTemplate="header">
+            <div class="flex  font-bold white-space-nowrap h-2rem w-12rem  align-items-center justify-content-center">
+                Orders
+            </div>
+        </ng-template>
+        <div class="p-2 flex  flex-column-reverse lg:flex-row  flex-1 gap-2">
+            <div class="">
+                <p-chart type="bar" [data]="vendordata" [options]="options" ></p-chart>
+            </div>
+            <div class="border-bottom-2 lg:border-0">
+                <h4>Order summary growth</h4>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel >
+        <ng-template pTemplate="header">
+            <div class="flex  font-bold white-space-nowrap h-2rem w-12rem  align-items-center justify-content-center">
+                Summary
+            </div>
+        </ng-template>
+        <div class="p-2 flex  flex-column-reverse lg:flex-row  flex-1 gap-2">
+            <div class="">
+                <p-chart type="bar" [data]="vendordata" [options]="options" ></p-chart>
+            </div>
+            <div class="border-bottom-2 lg:border-0">
+                <h4>Order summary growth</h4>
+            </div>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+
+ 

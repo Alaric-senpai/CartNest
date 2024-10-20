@@ -1,0 +1,163 @@
+<div class="w-screen h-3rem flex align-items-center justify-content-between px-2 border-bottom-1 overflow-x-scroll  surface-0 z-5 shadow-3">
+    <div class="flex-custom gap-2 cursor-pointer" routerLink="/">
+        <img src="logo.png" alt="" class="w-2rem h-2rem text-blue-400">
+        <h3 class="h3 title">CartNest</h3>
+    </div>
+    
+
+
+    <p-toast></p-toast>
+
+    <div class="hidden lg:block">
+        <p-inputGroup>
+            <input type="text" pInputText placeholder="Search product" styleClass="p-2 text-2xl" />
+            <button type="button" pButton icon="pi pi-search" class="p-button p-2 hover:p-button-info" severity="info"></button>
+        </p-inputGroup>
+    </div>
+    
+    <div class="flex-custom gap-2">
+        <div class="hover:text-white flex-custom gap-2 cursor-pointer hover:bg-teal-400 p-2 border-round transition-duration-100 focus:bg-green-400 " (click)="showDialog()" *ngIf="!(isloggedin)">
+            <i class="pi pi-user"></i>
+            <span>Account</span>
+        </div>
+        @if(isloggedin){
+            <div>
+                <p-avatarGroup styleClass="p-3">
+                    <p-avatar
+                    image="images/user1.jpg"
+                    shape="circle"
+                    >
+    
+                    </p-avatar>
+    
+                    <p-button icon="pi pi-chevron-down" (click)= "option.toggle($event)" text="true" rounded="true" styleClass="m-1 w-2rem h-2rem" > </p-button>
+                    <p-menu [model]="dropdoenitems" popup="true" #option>
+                        <ng-template pTemplate="start" >
+                            <div class="w-full p-2 h-2rem text-center text-primary text-2xl mb-3">
+                                username
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="item" let-item>
+                            <div class="mb-3">
+                                <a [routerLink]="item.routerLink"   class=" no-underline surface-overlay w-9 m-auto flex border-round cursor-pointer gap-2 w-full h-2rem hover:bg-teal-400 align-items-center p-2 hover:text-white transition-duration-400 ">
+                                    <i [class]="item.icon"></i>
+                                    <span>
+                                        {{ item.label }} 
+                                    </span>
+                                </a>
+    
+                            </div>
+                        </ng-template>
+                    </p-menu>
+
+                </p-avatarGroup>
+            </div>
+        }
+        <div class="hover:text-white flex-custom gap-2 cursor-pointer hover:bg-teal-400 p-2 border-round transition-duration-100" routerLink="carts" routerLinkActive="bg-green-400 text-white">
+            <i class="pi pi-cart-arrow-down"></i>
+            <span>Carts</span>
+        </div>
+        <div>
+            <p-button icon="pi pi-bars" severity="info" styleClass="p-2" [outlined]="true" (onClick)="showsidebar()"></p-button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- login dialog  -->
+<p-dialog 
+    header="login" 
+    [(visible)]="visible" 
+    [modal]="true"
+    [maximizable]="false"
+    [blockScroll]="true"
+    [dismissableMask]="true"
+    [draggable]="false"
+    closeAriaLabel="close"
+    [focusOnShow]="true"
+    [showHeader]="true"
+    
+    styleClass="w-full m-auto md:w-7 xl:w-5 border-round-3xl p-4"
+
+    >
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center justify-content-center w-12 h-4rem ">
+                <h3>LOGIN </h3>
+            </div>
+        </ng-template>
+        <div class="m-3">
+            <span class="p-text-secondary block mb-5 text-center">Login now for a better experience</span>
+            
+            <form [formGroup]="loginform" (ngSubmit)="login()">
+                <div class="mb-3 flex flex-column gap-2">
+                    <label for="lastname" class="pl-3">Email address</label>
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-envelope text-blue-500"></i>
+                        </p-inputGroupAddon>
+                        <input type="email" pInputText placeholder="enter your email" class="w-full h-3rem hover:border-blue-500 text-xl pl-3" formControlName="email">
+                    </p-inputGroup>
+                </div>
+                <div class="mb-3 flex flex-column gap-2">
+                    <label for="password" class="pl-3 flex justify-content-between">Password <span class="text-blue-500 underline cursor-pointer hover:text-green-500" routerLink="/reset">forgot Password</span></label>
+                    <p-inputGroup>
+                        <p-inputGroupAddon >
+                            <i class="pi pi-ellipsis-h text-blue-500"></i>
+                        </p-inputGroupAddon>
+                        <p-password styleClass=" w-full  text-xl h-3rem" [toggleMask]="true" [feedback]="false" formControlName="password"></p-password>
+                        <!-- <input type="text" pInputText placeholder="enter you firstname" class="w-full h-3rem hover:border-blue-500 text-xl pl-3"> -->
+                    </p-inputGroup>
+                </div>
+                <p-button  label="LOGIN" type="submit"  severity="info" rounded="true" styleClass="w-full h-3rem border-round-xl" [raised]="false" [outlined]="false" [disabled]="loginform.invalid"></p-button>
+            </form>
+        </div>
+        <ng-template pTemplate="footer">
+            <p-divider></p-divider>
+            <div class="w-full text-center mb-3 mt-3">
+                <!-- <a href=""> </a> -->
+                <p-button label="Sign Up" icon="pi pi-user-plus" styleClass="px-4 w-10rem h-3rem" severity="success" [rounded]="true" routerLink="/signup" />
+
+            </div>
+        </ng-template>
+</p-dialog>
+
+
+<!-- sidebar menu  -->
+<p-sidebar [(visible)]="sibarvisible">
+    <ng-template pTemplate="header">
+        <div class="w-full h-4rem flex align-items-center justify-content-center">
+            <h2>CartNest</h2>
+        </div>
+    </ng-template>
+    <div>
+        <div class=" gap-3">
+            <h3 class="font-medium w-9 m-auto border-round-2xl flex align-items-center justify-content-center surface-200 mb-2 h-3rem mt-1 cursor-pointer hover:bg-blue-400 hover:text-white transition-duration-400 " routerLinkActive="bg-green-500 text-white" routerLink="categories">All</h3>
+            <h3 class="font-medium w-9 m-auto border-round-2xl flex align-items-center justify-content-center surface-200 mb-2 h-3rem mt-1 cursor-pointer hover:bg-blue-400 hover:text-white transition-duration-400 " routerLinkActive="bg-green-500 text-white" routerLink="deals">Deals</h3>
+            <h3 class="font-medium w-9 m-auto border-round-2xl flex align-items-center justify-content-center surface-200 mb-2 h-3rem mt-1 cursor-pointer hover:bg-blue-400 hover:text-white transition-duration-400 " routerLinkActive="bg-green-500 text-white" routerLink="new">What's new</h3>
+            <h3 class="font-medium w-9 m-auto border-round-2xl flex align-items-center justify-content-center surface-200 mb-2 h-3rem mt-1 cursor-pointer hover:bg-blue-400 hover:text-white transition-duration-400 " routerLinkActive="bg-green-500 text-white">Delivery</h3>
+        </div>
+        <div class="w-9 m-auto">
+
+    
+            <!-- Dynamic menu -->
+            <p-menu [model]="categories" [popup]="false" #menu styleClass="m-auto w-full overflow-y-scroll" *ngIf="categories.length > 0">
+                <ng-template pTemplate="start">
+                    <div class="w-full h-2rem flex align-items-center justify-content-center text-2xl text-primary ">
+                        Categories
+                    </div>
+                    <p-divider></p-divider>
+                   
+                </ng-template>
+                
+                <ng-template pTemplate="item" let-item>
+                        <p class="line-height-4 hover:bg-primary pl-2 border-round font-semibold capitalize transition-duration-400" routerLinkActive="bg-purple-500" [routerLink]="['/home/category', item.id]">
+                           <i class="pi pi-caret-right"></i> {{ item.category_name }}
+                        </p>
+                    
+                </ng-template>
+            </p-menu>
+
+        </div>
+    </div>
+</p-sidebar>

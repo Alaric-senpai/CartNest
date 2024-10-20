@@ -1,0 +1,134 @@
+<p-menu [model]="menuitems" styleClass="h-screen   absolute top-0 left-0 shadow-3 w-2 min-w-max z-5" [class.cshidden]="menuvisible" >
+    <ng-template pTemplate="start">
+        <div class="flex gap-3 flex-row align-items-center pt-2 mb-2 pl-3 px-3">
+            <img src="logo.png" alt="" class="w-2rem">
+
+            <h3 class="text-primary text-4xl">CartNest</h3>
+        </div>
+        <p-divider></p-divider>
+    </ng-template>
+
+    <ng-template pTemplate="submenuheader" let-item>
+        <div class="h-2rem flex align-items-center pl-2">
+            <span class="text-primary font-bold ">
+                {{ item.label }}
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="item" let-item>
+        <a  class="flex align-items-center p-menu-item-link h-2rem p-2 pl-3 surface-200 mb-2 mt-1 py-3 w-11 m-auto border-round hover:text-primary cursor-pointer hover:w-10 transition-duration-400 no-underline"  [routerLink]="item.routerLink" routerLinkActive="bg-blue-500 text-white">
+            <span [class]= "item.icon">
+            </span>
+            <span class="ml-2">
+                {{ item.label }}
+            </span>
+        </a>
+    </ng-template>
+    <ng-template pTemplate="end" class="relative bottom-0">
+        <button class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround">
+            <p-avatar
+            image="images/user1.jpg"
+            class="mr-2"
+            shape="circle"
+            ></p-avatar>
+            <span class="inline-flex flex-column">
+                <span class="font-bold">Mathew James</span>
+                <span class="text-sm">Vendor</span>
+            </span>
+        </button>
+    </ng-template>
+</p-menu>
+<div class="absolute right-0 w-12 sm:w-12 md:w-12 lg:w-10 h-screen overflow-y-scroll overflow-x-hidden p-1">
+    <p-toolbar styleClass="w-11 m-auto my-3 p-2 border-round-2xl bg-teal-90 shadow-3   ">
+        <div class="p-toolbar-group-start">
+            <span class="text-color font-bold">
+                Bora bora shop
+            </span>
+        </div>
+        <div class="p-toolbar-group-middle hidden md:block">
+            <p-button   icon="pi pi-user" styleClass="p-2" [rounded]="true" [outlined]="true" [text]="true"></p-button>
+            <p-button  icon="pi pi-plus" styleClass="p-2" [rounded]="true" [outlined]="true" [text]="true" (onClick)="showdialog()"></p-button>
+            <p-button icon="pi pi-cog" styleClass="p-2" [rounded]="true" [outlined]="true" [text]="true"></p-button>
+            
+        </div>
+        <div class="p-toolbar-group-end">
+        <p-avatar
+        image="images/user1.jpg"
+        shape="circle"
+        >
+
+        </p-avatar>
+        <!-- <p-button icon="pi pi-iconName" label="label"></p-button> -->
+        <p-button icon="pi pi-bars" styleClass="p-2 ml-3 lg:hidden " outlined="true" (onClick)="togglemenu()" ></p-button>
+        </div>
+    </p-toolbar>
+
+    <div class="p-2" (onClick)="hidemenu()">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<p-dialog
+    [(visible)]="dialog"
+    [modal]="true"
+    [dismissableMask]="true"
+    (onHide)="dialog = false"
+    styleClass="surface-overlay p-2 w-10 md:2-6 lg:w-4"
+
+    >
+    <ng-template pTemplate="header">
+        <div class="w-full h-3rem font-bold text-2xl text-primary flex align-items-center">
+
+            What to add?
+        </div>
+    </ng-template>
+
+    <div>
+        <div class="text-center">
+            <p-button styleClass="p-2 m-2" label="Add category" (onClick)="showsidebar()"></p-button>
+            <p-button styleClass="p-2 m-2" label="Add Product" routerLink="newProduct"></p-button>
+        </div>
+    </div>
+
+
+</p-dialog>
+
+<p-sidebar position="right"
+    [(visible)]="addcat"
+    [dismissible]="true"
+    [blockScroll]="true"
+    [modal]="true"
+    styleClass="surface-overlay p-2"    
+>
+    <ng-template pTemplate="header">
+        <div class="h-3rem flex align-items-center jusfticy-content-center text-2xl font-bold  ">
+            Add category
+        </div>
+    </ng-template>
+
+    <div class="form">
+        <form action="" [formGroup]="catform" (ngSubmit)="addcategory()">
+            <div class="field">
+                <label for="name">Category name</label>
+                <input type="text" class="input-field" pInputText formControlName="name">
+            </div>
+            <div class="field">
+                <label for="name">Category long name</label>
+                <input type="text" class="input-field" pInputText formControlName="longname">
+            </div>
+            <div class="field">
+                <label for="name">Category Description</label>
+                <textarea type="text" class="input-field" pInputText cols="30" rows="10" formControlName="description"></textarea>
+            </div>
+            <div class="field">
+                <label for="name">Category Image url</label>
+                <input type="url" class="input-field" pInputText formControlName="image">
+            </div>
+            <div class="field">
+                <p-button label="Add"  styleClass="p-2 w-full my-2" type="submit" [disabled]="catform.invalid"></p-button>
+            </div>
+        </form>
+    </div>
+
+</p-sidebar>
+<p-toast [life]="3000"></p-toast>

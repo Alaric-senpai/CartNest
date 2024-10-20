@@ -1,0 +1,61 @@
+<div class=" w-screen pt-4">
+    <div class="flex my-2 justify-content-end w-10 m-auto p-3">
+        <p-button severity="success" outlined="true" styleClass="p-2" label="Add Cart" (onClick)="toggleDialog()"></p-button>
+    </div>
+    @if(carts.length > 0){
+        <div class="grid mt-3 w-11 m-auto">
+            <div class="p-2 pl-3 col-12 sm:col-6 md:col-4 lg:col-3" *ngFor="let cart of carts">
+            <p-card   styleClass="shadow-5 p-0 hover:shadow-8 transition-duration-500 border-round-xl overflow-hidden surface-overlay cursor-pointer" >
+                <img [src]="cart.image" alt="" class="w-full h-15rem">
+                <div class="p-2">
+                    <h4 class="text-2xl capitalize  "> {{ cart.name }} </h4>
+                    <p-button severity="info" label="open cart" styleClass="p-2 mt-3 w-9 mb-2" outlined="true"  [routerLink]="['../cart', cart.id]"></p-button>
+                    <p-button icon="pi pi-trash" severity="danger" styleClass="p-2 mb-2 w-2 ml-2" outlined="true" (onClick)="DeleteCart(cart.id)"></p-button>
+                </div>
+            </p-card>
+        </div>
+    </div>
+        }
+
+
+</div>
+
+<p-dialog
+    [(visible)]="showdialog"
+    styleClass="surface-overlay p-4 shadow-3"
+    [modal]="true"
+    [maximizable]="false"
+    [blockScroll]="true"
+    [dismissableMask]="true"
+    [draggable]="false"
+    closeAriaLabel="close"
+    [focusOnShow]="true"
+    [showHeader]="true"
+>
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center justify-content-center w-12 h-4rem ">
+            <h2 class="px-3">Add Cart</h2>
+        </div>
+        
+    </ng-template>
+
+    <div class="p-2">
+        <form [formGroup]="cartform" (ngSubmit)="addCart()">
+            <div class="field">
+                <label for="name">CartName</label>
+                <input type="text" name="name" id="name" class="w-full border-1 border-solid focus:border-orange-400 surface-border hover:border-primary h-3rem border-round  appearance-none outline-none text-base text-color p-2" formControlName="name">
+            </div>
+            <div class="field">
+                <label for="name">Image url</label>
+                <input type="url" name="name" id="name" class="w-full border-1 border-solid focus:border-orange-400 surface-border hover:border-primary h-3rem border-round  appearance-none outline-none text-base text-color p-2" formControlName="imageurl" >
+            </div>
+            <p-button label="Add" type="submit" styleClass="p-2 w-full mt-4 mb-2" [disabled]="cartform.invalid"></p-button>
+        </form>
+    </div>
+
+    <ng-template pTemplate="footer">
+        CartNest  {{ date() }} 
+    </ng-template>
+
+</p-dialog>
+<p-toast></p-toast>

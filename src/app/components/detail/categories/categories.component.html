@@ -1,0 +1,38 @@
+<div class="p-2 flex grid" *ngIf="categories.length >0">
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3" *ngFor="let category of categories; track $index ">
+        <nest-ca-card [catid]="category.id" [catname]="category.category_name" [imageurl]="category.image"></nest-ca-card>
+    </div>
+
+</div>
+
+
+<div class="grid p-2" *ngIf="categories.length == 0  && !(categorieserror)">
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+    <div class="col-12 sm:col-6 md:col-6 lg: col-4 xl:col-3">
+        <p-skeleton styleClass="w-full h-17rem"></p-skeleton>
+    </div>
+</div>
+
+<div class="p-5 text-red-500 text-2xl" *ngIf="categorieserror">
+    {{errormessage }}
+</div>

@@ -1,0 +1,52 @@
+<p-menu styleClass="h-screen surface-overlay  absolute top-0 left-0 shadow-3 w-2 min-w-max z-5" [model]="menuitems" [class.cshidden]="menuvisible">
+    <ng-template pTemplate="start">
+        <div class="flex h-3rem align-items-center  text-3xl pl-4">
+            CartNest
+        </div>
+        <p-divider styleClass="my-2 h-1rem"></p-divider>
+    </ng-template>
+
+    <ng-template pTemplate="item" let-item>
+
+        <p class="h-3rem p-3 cursor-pointer hover:text-white w-full flex align-items-center gap-2 no-underline  hover:bg-blue-400 transition-duration-400 " [routerLink]="item.routerLink" routerLinkActive="bg-primary">
+        <i [class]="item.icon"></i>
+            {{ item.label  }}
+        </p>
+
+    </ng-template>
+    
+    <ng-template pTemplate="end" class="bottom-0 absolute">
+        <!-- footer here -->
+         <p-divider styleClass="my-2 h-1rem">
+
+         </p-divider>
+         <p-avatarGroup styleClass="p-2 inline-flex flex-row gap-2 align-items-center ">
+            <p-avatar
+            image="images/user1.jpg"
+            shape="circle"
+            >
+            </p-avatar>
+            <span class="inline-flex flex-column gap-1">
+                <span>Alan Wesley</span>
+                <span class="text-xs">
+                    alan.wesley&#64;gmail.com
+                </span>
+            </span>
+            <p-button severity="danger" icon="pi pi-sign-out" styleClass="p-2 w-2rem h-2rem" rounded="true" text="true" (onClick)="logout()"></p-button>
+         </p-avatarGroup>
+    </ng-template>
+    
+    
+</p-menu>
+
+<div class="absolute right-0 w-12 sm:w-12 md:w-10 h-screen overflow-y-scroll overflow-x-hidden">
+    <!-- hey there -->
+     <div class="w-full lg:hidden h-3rem shadow-0 flex align-items-center justify-content-end px-3 surface-overlay">
+        <p-button icon="pi pi-bars" outlined="true" styleClass="p-2 lg:hidden " (onClick)="togglemenu()"></p-button>
+    </div>
+    <p-divider styleClass="h-1rem lg:hidden"></p-divider>
+     <div class="p-3">
+        <router-outlet></router-outlet>
+        
+     </div>
+</div>

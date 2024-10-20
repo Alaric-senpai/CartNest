@@ -1,0 +1,35 @@
+<div>
+    <div class="grid">
+        <div class="col-12 lg:col-6 overflow-hidden">
+            <p-image
+                    [src]="productinfo.main_image"
+                    preview="false"
+                    width="100%"
+                    styleClass="w-full h-20rem border-round-xl"
+                    >
+
+            </p-image>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="flex-custom">
+                <h2 class=" text-primary">{{ productinfo.name }}  </h2>
+                <p-button icon="pi pi-pencil" styleClass="p-2" outlined="true" rounded="true"></p-button>
+            </div>
+            <div class="my-2">
+                <h4>supplier: Wes ware house</h4>
+            </div>
+            <h4>Instock : {{ productinfo.instock}}</h4>
+            <div class="my-2">
+                <h5>Product description</h5>
+                <p class="mt-3">
+                    {{ productinfo.description }}
+                </p>
+            </div>
+            <div class="mb-2 mt-4 flex-custom w-7 m-auto">
+                <h2>Price $ 45.00</h2>
+
+
+            </div>
+        </div>
+    </div>
+</div>
