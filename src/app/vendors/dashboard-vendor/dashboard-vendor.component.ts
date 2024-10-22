@@ -23,6 +23,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Category } from '../../interfaces/category';
 import { CategoryManagementService } from '../../services/category-management.service';
 import { ToastModule } from 'primeng/toast';
+import { Brand } from '../../interfaces/brand';
+import { BrandsService } from '../../services/brands.service';
 
 @Component({
   selector: 'nest-dashboard-vendor',
@@ -40,13 +42,23 @@ export class DashboardVendorComponent {
   addcat: boolean = false;
   dialog: boolean = false;
   catform!: FormGroup;
-  constructor(private router: Router, private fb: FormBuilder, private categoryservice:CategoryManagementService, private ms:MessageService) {
+  brandform!: FormGroup;
+  brandsidebar: boolean = false;
+  constructor(private router: Router, private fb: FormBuilder, private categoryservice: CategoryManagementService, private ms: MessageService,
+    private brandsService:BrandsService
+  ) {
     this.catform = this.fb.group(
       {
         name: ['', Validators.required],
         longname: ['', Validators.required],
         description: ['', Validators.required],
         image: ['', Validators.required]
+      }
+    )
+
+    this.brandform = this.fb.group(
+      {
+        name: ['', Validators.required]
       }
     )
   }
@@ -57,6 +69,12 @@ export class DashboardVendorComponent {
     this.dialog = false
     this.addcat = true
   }
+
+  showbrandsidebar() {
+    this.dialog = false
+    this.brandsidebar = true
+  }
+
   menuvisible: boolean =true
 
   togglemenu(){
@@ -201,6 +219,37 @@ export class DashboardVendorComponent {
       (data: any) => {
         console.log(data)
         this.addcat = false
+        const message = data.message
+        this.ms.add({
+          severity: 'success',
+          summary: 'Sucessfull operation',
+          detail: message,
+          styleClass: 'p-2',
+          icon: 'pi pi-check'
+        })
+      },
+      (error: any) => {
+        console.error(error)
+        this.addcat = false
+        const message = error.error.message || error.name || error.message
+        this.ms.add({
+          severity: 'error',
+          summary: 'Error occoured',
+          detail: message,
+          styleClass: 'p-2',
+          icon: 'pi pi-check'
+        })
+      }
+    )
+    
+  }
+  addBrand() {
+    const data: Brand = this.brandform.value
+
+    this.brandsService.newBrand(data).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.brandsidebar = false
         const message = data.message
         this.ms.add({
           severity: 'success',

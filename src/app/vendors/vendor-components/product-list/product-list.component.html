@@ -5,7 +5,7 @@
     
     <p-button icon="pi pi-plus" text="true" outlined="true"  rounded="true" styleClass="p-2" routerLink="../newProduct"></p-button>
 </div>
-<div>
+<div *ngIf="products.length > 0">
     <p-dataView #dv [value]="products" [rows]="5" [paginator]="true" styleClass="w-10 m-auto p-2 shadow-6  border-round">
         <ng-template pTemplate="list" let-products>
             <div class="grid grid-nogutter">
@@ -40,7 +40,15 @@
                 </div>
             </div>
         </ng-template>
-    </p-dataView>
-    
-    
+    </p-dataView>  
+</div>
+<div class="w-full -p-4" *ngIf="products.length == 0 && !(productserror && loadingproducts)">
+    no products listed by this shop
+</div>
+
+<div class="w-full -p-4" *ngIf="products.length == 0 && !(productserror) && loadingproducts">
+    loading products
+</div>
+<div class="w-full -p-4" *ngIf="productserror">
+    {{ errormessage }}
 </div>

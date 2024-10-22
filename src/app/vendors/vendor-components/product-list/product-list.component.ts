@@ -18,8 +18,10 @@ import { Observable } from 'rxjs';
 })
 export class ProductListComponent implements OnInit {
   products: any = []
+  loadingproducts: boolean = true
   categories:any = []
   productserror!: boolean;
+  errormessage: any;
   caterror!: boolean;
 
   constructor(private VendorProductsService:VendorProductManagementService, private categoryService:CategoryManagementService){}
@@ -41,13 +43,17 @@ export class ProductListComponent implements OnInit {
   initProducts() {
     this.VendorProductsService.getMyProducts().subscribe(
       (data:any) =>{
-        console.log(data)
+        // console.log(data)
+        this.loadingproducts = false
         this.products = data.products
         this.fetchcategories()
       },
       (error:any)=>{
         this.productserror = true
-        console.log(error)
+        this.loadingproducts = false
+        this.errormessage = error.error.error || error.error.errormessage || error.statusText || error.name
+        // console.log(error)
+
       }
     )
   }

@@ -86,6 +86,7 @@
     <div>
         <div class="text-center">
             <p-button styleClass="p-2 m-2" label="Add category" (onClick)="showsidebar()"></p-button>
+            <p-button styleClass="p-2 m-2" label="Add Brand" (onClick)="showbrandsidebar()"></p-button>
             <p-button styleClass="p-2 m-2" label="Add Product" routerLink="newProduct"></p-button>
         </div>
     </div>
@@ -126,6 +127,32 @@
             </div>
             <div class="field">
                 <p-button label="Add"  styleClass="p-2 w-full my-2" type="submit" [disabled]="catform.invalid"></p-button>
+            </div>
+        </form>
+    </div>
+
+</p-sidebar>
+<p-sidebar position="right"
+    [(visible)]="brandsidebar"
+    [dismissible]="true"
+    [blockScroll]="true"
+    [modal]="true"
+    styleClass="surface-overlay p-2"    
+>
+    <ng-template pTemplate="header">
+        <div class="h-3rem flex align-items-center jusfticy-content-center text-2xl font-bold  ">
+            Add Brand
+        </div>
+    </ng-template>
+
+    <div class="form">
+        <form action="" [formGroup]="brandform" (ngSubmit)="addBrand()">
+            <div class="field">
+                <label for="name">Brand name</label>
+                <input type="text" class="input-field" pInputText formControlName="name">
+            </div>
+            <div class="field">
+                <p-button label="Add"  styleClass="p-2 w-full my-2" type="submit" [disabled]="brandform.invalid"></p-button>
             </div>
         </form>
     </div>

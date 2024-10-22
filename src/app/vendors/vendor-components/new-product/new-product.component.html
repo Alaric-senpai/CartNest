@@ -14,19 +14,16 @@
                                 class="p-1 px-2 h-3rem" 
                                 pInputText 
                                 id="image"
-                                (change)="setpreview()" 
+                                
                                  />
                         </div>
                     </div>
 
-                    <div class="mb-3 p-3">
-                        <label> Other images</label> <br>
-                        <p-button icon="pi pi-iconName" label="Add image" styleClass="p-2 w-2 m-auto" severity="success"></p-button>
-                    </div>
 
                     <div class="mb-3 h-full">
-                        <label for="">Product Description</label>
+                        <label for="">Product Description</label> <br>
                         <!-- <p-editor [style]="{height : '320px'}"></p-editor> -->
+                        <textarea cols="30" rows="15" class="input-field mt-3"></textarea>
                     </div>
                 </div>
                 <div class="col-12 md:col-5">
@@ -92,13 +89,41 @@
                 <div class="mb-3">
                     <div class="flex flex-column gap-2">
                         <label for="brand">Brand Name </label>
-                        <input
-                            class="p-1 px-2 h-3rem" 
-                            pInputText 
-                            id="brand" 
-                             />
+                        <p-inputGroup styleClass="flex-custom gap-1">
+                        <select name="" id="" pInputText class="p-1 px-2 h-3rem">
+                            <optgroup *ngIf="brands.length >0" label="Available rands">
+                                <option [value]="brand.id" *ngFor=" let brand of brands" class="h-2rem hover:bg-primary transition-duration-500">
+                                    {{ brand.brand_name }}
+                                </option>
+                            </optgroup>
+                            <optgroup *ngIf="brands.length == 0 ">
+                                <option value="" disabled selected>
+                                    loading Brands
+                                </option>
+                            </optgroup>
+                        </select>
+                        <p-button icon="pi pi-refresh" styleClass="p-2 h-3rem" outlined="true" severity="primary" (onClick)="fetchbrands()" />
+                        </p-inputGroup>
                     </div>
                 </div>
+
+
+                    <div class="mb-3 p-3">
+                        <label> Other images</label> <br>
+                        <div class="mb-3 mt-2">
+                        <input type="url" pInputText class="w-4 h-3rem ">                            
+                        </div>
+                        <p-button icon="pi pi-iconName" label="Add image" styleClass="p-2  m-auto" severity="success"></p-button>
+                    </div>
+
+
+                    <div class="mb-3 p-3">
+                        <label> Tags</label> <br>
+                        <div class="mb-3 mt-2">
+                        <input type="url" pInputText class="w-4 h-3rem ">                            
+                        </div>
+                        <p-button icon="pi pi-iconName" label="Add tag" styleClass="p-2  m-auto" severity="success"></p-button>
+                    </div>
 
                 </div>
                 <div class="col-12">

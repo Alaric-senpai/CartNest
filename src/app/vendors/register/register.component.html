@@ -10,38 +10,51 @@
 	            <div class="">
 	                <div class="p-2">
 	                	<h4 class="text-center capitalize text-xl my-3">Register your shop here</h4>
-	                	<form class="w-10 m-auto lg:w-5">
+	                	<form class="w-10 m-auto lg:w-5" [formGroup]="registerForm" (ngSubmit)="registerShop()">
 	                		<div class="field">
 	                			<label class="w-full line-height-4 text-xl ">Shop email</label>
 	                			<input type="email" name="email"
-	                			class="input-field h-3rem">
+	                			class="input-field h-3rem" formControlName="email">
 	                		</div>
 	                		<div class="field">
 	                			<label class="w-full line-height-4 text-xl ">Shop Name</label>
-	                			<input type="text" name="email"
-	                			class="input-field h-3rem">
+	                			<input type="text" 
+	                			class="input-field h-3rem" formControlName="name">
 	                		</div>
 	                		<div class="field">
 	                			<label class="w-full line-height-4 text-xl ">Shop Location</label>
-	                			<input type="text" name="email"
-	                			class="input-field h-3rem">
+	                			<input type="text" 
+	                			class="input-field h-3rem" formControlName="location">
 	                		</div>
 	                		<div class="field">
 	                			<label class="w-full line-height-4 text-xl ">Business registration number</label>
-	                			<input type="text" name="email"
-	                			class="input-field h-3rem">
+	                			<input type="text" 
+	                			class="input-field h-3rem" formControlName="regno">
 	                		</div>
 	                		<div class="field">
 	                			<label class="w-full line-height-4 text-xl ">Years in business</label>
-	                			<input type="number" name="email"
-	                			class="input-field h-3rem">
+	                			<input type="number" 
+	                			class="input-field h-3rem" formControlName="years">
+	                		</div>
+	                		<div class="field">
+	                			<label class="w-full line-height-4 text-xl ">Operational hours</label>
+	                			<input type="text" 
+	                			class="input-field h-3rem" formControlName="hours">
+	                		</div>
+	                		<div class="field">
+	                			<label class="w-full line-height-4 text-xl ">Shop type</label>
+	                			<select class="input-field h-3rem" formControlName="type">
+	                				<option value="wholesale">Whole sale</option>
+	                				<option value="Retail">Retail</option>
+
+	                			</select>
 	                		</div>
 	                		<div class="field">
 		                			<label class="w-full line-height-4 text-xl ">Business description</label>
-		                			<textarea class="h-15rem input-field"></textarea>
+		                			<textarea class="h-15rem input-field" formControlName="description"></textarea>
 		                		</div>
 	                		<div class="field text-center mt-5">
-	                			<p-button severity="info" styleClass="p-2 w-5 " label="save details"></p-button>
+	                			<p-button severity="info" styleClass="p-2 w-5 " label="Create shop" type="submit"></p-button>
 	                		</div>
 	                	</form>
 	                </div>
@@ -97,3 +110,5 @@
 	</p-stepper>
 
 </div>
+
+<p-toast></p-toast>

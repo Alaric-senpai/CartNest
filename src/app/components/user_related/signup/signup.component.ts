@@ -11,11 +11,14 @@ import { Password, PasswordModule } from 'primeng/password';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { AuthService } from '../../../services/auth.service';
 import { CreateUser } from '../../../interfaces/user';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'nest-signup',
   standalone: true,
-  imports: [RouterModule, ButtonModule, DividerModule, InputTextModule,  InputGroupAddonModule, InputGroupModule, PasswordModule, ToggleButtonModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, ButtonModule, DividerModule, InputTextModule,  InputGroupAddonModule, InputGroupModule, PasswordModule, ToggleButtonModule, FormsModule, ReactiveFormsModule,
+    ToastModule
+  ],
   providers: [MessageService],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'

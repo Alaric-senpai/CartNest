@@ -124,8 +124,14 @@ export class NavbarComponent implements OnInit {
         }else if( role == 'vendor' ){
               if(data.shoptoken){
                 const shoptoken = data.shoptoken
+                const status = data.shopstatus
                 sessionStorage.setItem('shopidentifier', shoptoken)
+                if(status == "pending"){
+                  this.router.navigate(['/Shopregister'])
+                }else{
                 this.router.navigate(['/vendor'])
+                  
+                }
               }else{
                 this.router.navigate(['/Shopregister'])
 
