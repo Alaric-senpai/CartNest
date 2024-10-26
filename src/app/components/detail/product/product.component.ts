@@ -10,7 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ImageModule } from 'primeng/image';
 import { TagModule } from 'primeng/tag';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductsManagementService } from '../../../services/products-management.service';
 import { CommonModule } from '@angular/common';
 import { map } from 'rxjs';
@@ -39,13 +39,16 @@ export class ProductComponent implements OnInit {
   constructor(private toast:MessageService, private route:ActivatedRoute, private productService:ProductsManagementService){}
   ngOnInit(): void {
 
-    const prodid$ = this.route.params.pipe(
-      map(params => params['id'])
+    this.route.paramMap.subscribe(
+      (params:ParamMap)=>{
+        this.productid = params.get('id');
+
+        if(this.productid){
+          this.getproductdata()
+        }
+      }
     )
 
-    this.productid = this.route.snapshot.paramMap.get('id');
-
-    this.getproductdata()
   }
 
 

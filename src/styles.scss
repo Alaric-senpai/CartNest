@@ -17,8 +17,9 @@
 }
 
 .cshidden{
-    @include styleclass('hidden lg:block')
+    @include styleclass('hidden lg:block');
 }
+
 
 *{
     padding: 0 ;

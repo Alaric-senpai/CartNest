@@ -36,8 +36,8 @@
                         <div class="flex-custom  w-12">
                             <div class="flex-custom  gap-2">
                                 <p-toast [life]="1000" position="top-right" />
-                                <p-button icon="pi pi-heart" [rounded]="true" severity="warning" (onClick)="showToast1()"></p-button>
-                                <p-button icon="pi pi-trash" [rounded]="true" severity="danger" (onClick)="showLifeLong()"></p-button>
+                                <p-button icon="pi pi-heart" [rounded]="true" severity="warning"></p-button>
+                                <p-button icon="pi pi-trash" [rounded]="true" severity="danger" ></p-button>
                             </div>
                             <div class="flex-custom gap-3 cursor-pointer">
                                 <p-button icon="pi pi-minus" [rounded]="true" [outlined]="true" styleClass="text-sm w-2rem h-2rem" severity="danger"></p-button>
@@ -49,9 +49,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
         <div class="col-12 lg:col-4 ">
             <div>
@@ -76,7 +73,7 @@
                     <h4 class="flex-custom gap-2">Total </h4>
                     <h4>$550.00</h4>
                 </div>
-                <button pButton class="w-full border-0 appearance-none outline-none h-3rem " label="Checkout Now" severity="contrast" [raised]="false" [rounded]="true" (click)="checkout()"></button>
+                <button pButton class="w-full border-0 appearance-none outline-none h-3rem " label="Checkout Now" severity="contrast" [raised]="false" [rounded]="true" ></button>
             </div>
         </div>
     </div>

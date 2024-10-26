@@ -1,9 +1,10 @@
+<p-toast [life]="3000"></p-toast>
 <p-card [header]="name" subheader=""  styleClass="m-1  surface-overlay  shadow-4 border-round hover:shadow-7 transition-duration-500 ">
     <p-header>
         <img [ngSrc]="imageurl" alt="product image" width="300" height="500"   class="w-full m-auto h-10rem mb-4">
     </p-header>
     <p-footer class="mt-4 flex justify-content-between p-2">
-        <p-button icon="pi pi-cart-plus" label="  Cart " styleClass="p-2 px-3  mr-3 mt-3" [outlined]="true"></p-button>
+        <p-button icon="pi pi-cart-plus" label="  Cart " styleClass="p-2 px-3  mr-3 mt-3" [outlined]="true" (onClick) ="sidebravisible=true"></p-button>
         <span class="flex-custom">
             <p-button icon="pi pi-heart-fill"  severity="danger" styleClass="p-2  mr-4 mt-3" [outlined]="true"></p-button>
             <p-button icon="pi pi-chevron-right"  styleClass="p-2 mt-3" [outlined]="true" title="more details" severity="info" [routerLink]="['/product', productid]"></p-button>
@@ -11,3 +12,38 @@
 
     </p-footer>
 </p-card>
+
+<p-sidebar [(visible)]="sidebravisible"
+    [dismissible]="true"
+    [modal]="true"
+    styleClass="p-2 "
+    position = "right"
+    [closeOnEscape]="true"
+    
+    >
+    <ng-template pTemplate="header">
+        <div class="w-full h-4rem flex align-items-center justify-content-center">
+            <h2>Add to cart</h2>
+        </div>
+    </ng-template>
+    @if(loggedin){
+    <div class="p-2 flex flex-wrap gap-2">
+    <p-button *ngFor="let cart of carts"
+              icon="pi pi-plus"
+              [label]="cart.name"
+              styleClass= "p-2"
+              (onClick)="addToCart(productid, cart.id, 1)">
+    </p-button>
+
+    </div>
+    <div class="p-2">
+        <p-button icon="pi pi-plus" label="add cart"  outlined="true" routerLink="carts" styleClass="p-2"></p-button>
+    </div>
+
+}@else {
+    <div class="p-2 w-full ">
+        <p-button styleClass="w-6 mx-auto my-4 p-2" routerLink="/login" icon = "pi pi-user" severity="success" label ="login" />
+    </div>
+}
+
+</p-sidebar>

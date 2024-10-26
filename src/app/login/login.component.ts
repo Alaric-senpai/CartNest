@@ -8,7 +8,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../services/auth.service';
 import { ToastModule } from 'primeng/toast';
-import { jwtDecode } from 'jwt-decode';
+import * as jwt from 'jsonwebtoken';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'nest-login',
@@ -19,6 +20,10 @@ import { jwtDecode } from 'jwt-decode';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
+
+  private jwtkey  = environment.jwtTOken
+
+
 
   loginform!:FormGroup
   constructor(private ms:MessageService, private fb:FormBuilder, private authService:AuthService,
@@ -51,8 +56,13 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('token', usertoken)
         sessionStorage.setItem('role', role)
 
+        // const user = this.authService.getcurrentUser()
+      // const user = jwt.verify(usertoken, this.jwtkey)
+        // const user = jwt.decode(usertoken)
 
-        // const decoded = jwtDecode(usertoken, true)
+
+        // const decoded = jwt.decode(usertoken)
+        
         if(role == 'admin'){
           this.router.navigate(['/admin'])
 
@@ -89,3 +99,4 @@ export class LoginComponent implements OnInit {
 
   }
 }
+

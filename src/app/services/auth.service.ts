@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import jwt_decode, { jwtDecode } from 'jwt-decode'
-import jasmine from 'jasmine';
 import { CreateUser } from '../interfaces/user';
+// import * as jwt from 'jsonwebtoken';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,8 @@ export class AuthService {
 
   constructor(private http:HttpClient, private router:Router, private route:ActivatedRoute) { }
 
-  private apiurl = environment.apiurl
+  private apiurl = environment.apiurl;
+  private jwtkey  = environment.jwtTOken
 
   userlogin(email:any, password:any):Observable<any>{
     const url = `${this.apiurl}/cartnest/auth/login`;
@@ -29,19 +30,17 @@ export class AuthService {
     const url  = `${this.apiurl}/cartnest/auth/register`
     return this.http.post(url, user)
   }
+  
+  getcurrentUser():any{
+    // if(sessionStorage.getItem('token')){
 
-  getcurrentUser(){
-    if(sessionStorage.getItem('token')){
+    //   const token:any = sessionStorage.getItem('token')
 
-      const token = sessionStorage.getItem('token')
+    //   const user = jwt.verify(token, this.jwtkey)
+    //   console.log(user)
+    //   return user
 
-      // return jwtDecode(token)
-      // const decoded: string | any | null= jwtDecode(token) 
-
-      // console.log(decoded)
-
-
-    }
+    // }
   }
 
   logout(){

@@ -37,6 +37,6 @@ export class CartsService {
   addTocart(item:cartItem):Observable<any>{
     const url = `${this.apiurl}/cartnest/carts/addProduct`
 
-    return this.http.post(url, {item})
+    return this.http.post(url, item)
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, of, switchMap } from 'rxjs';
+import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,11 @@ export class ProductsManagementService {
   getProductbyId(product_id:any):Observable<any[]>{
     const url = `${this.apiurl}/product?product_id=${product_id}`;
     return this.http.get<any[]>(url)
+  }
+
+  addProduct(product:Product):Observable<any>{
+    const url  = `${this.apiurl}/add`
+    return this.http.post(url, product)
   }
 
    getProductsbyVendor(vendor_id:Number):Observable<any[]>{

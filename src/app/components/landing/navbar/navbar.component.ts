@@ -120,6 +120,8 @@ export class NavbarComponent implements OnInit {
 
         }else if(role == 'customer'){
           this.router.navigate(['/home'])
+          this.checkifloggedin()
+
 
         }else if( role == 'vendor' ){
               if(data.shoptoken){
