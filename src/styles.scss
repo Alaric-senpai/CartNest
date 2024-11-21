@@ -39,3 +39,10 @@ html{
     display: none;
 
 }
+
+.transform{
+    transform:translate(-50%, 15%) !important;
+}
+.disabled-field{
+    @include styleclass('w-9 my-2 surface-overlay surface-border border-round-xl hover:surface-hover h-3rem px-3 font-bold text-xl text-base');
+}

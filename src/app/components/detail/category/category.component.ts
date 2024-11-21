@@ -56,7 +56,7 @@ export class CategoryComponent implements OnInit {
 
   private initpage(): void {
     this.getCategoryData();
-    console.log('Current Category ID:', this.category);
+    // console.log('Current Category ID:', this.category);
   }
 
   getCategoryData(): void {

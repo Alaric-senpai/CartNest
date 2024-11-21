@@ -10,6 +10,7 @@
 
     <div *ngIf="products.length > 0">
         <p-paginator
+            styleClass="w-10 m-auto mt-3"
             (onPageChange)="onPageChange($event)"
             [first]="first"
             [rows]="rows"

@@ -11,7 +11,7 @@ export class CartsService {
   constructor(private http:HttpClient) { }
 
   private apiurl = environment.apiurl
-  
+
   getMycarts():Observable<any[]>{
     const url = `${this.apiurl}/cartnest/carts/mycarts`
     return this.http.get<any[]>(url)
@@ -38,5 +38,17 @@ export class CartsService {
     const url = `${this.apiurl}/cartnest/carts/addProduct`
 
     return this.http.post(url, item)
+  }
+
+  cartGoodCount(cartid:Number, quantity:number , productid:Number):Observable<any>{
+    const url = `${this.apiurl}/cartnest/carts/product/edit`
+    return this.http.post(url, { cart:cartid, product:productid ,quantity:quantity})
+  }
+
+
+  removeFromcart(cart:Number, product:number):Observable<any>{
+    const url =`${this.apiurl}/cartnest/carts/product/remove?cart=${cart}&product=${product}`
+
+    return this.http.delete<any>(url)
   }
 }

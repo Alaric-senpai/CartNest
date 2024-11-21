@@ -43,6 +43,26 @@ export class AuthService {
     // }
   }
 
+
+  sendResetToken(email:string):Observable<any>{
+    console.log(email)
+    const url = `${this.apiurl}/cartnest/auth/user/token/send?email=${email}`
+    return this.http.post(url, email)
+  }
+
+  confirmToken(email:string, token:Number):Observable<any>{
+    const url = `${this.apiurl}/cartnest/auth/user/token/confirm`
+    return this.http.post(url, { email:email, code:token })
+  }
+
+  resetPassword(email:string, password:any):Observable<any>{
+    const url = `${this.apiurl}/cartnest/auth/user/reset`
+    return this.http.post(url ,{email:email, password:password})
+  }
+
+
+
+
   logout(){
     sessionStorage.clear();
 

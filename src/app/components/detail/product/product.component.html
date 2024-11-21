@@ -100,8 +100,8 @@
 
             <div class="mt-4">
                 <p-toast></p-toast>
-                <p-button styleClass="w-5 mr-3 h-3rem bg-bluegray-800 p-button border-1 border-bluegray-800  hover:shadow-5 hover:surface-800 transition-duration-500" label="Buy Now" (onClick)="order('1')"></p-button>
-                <p-button label="Add to cart" styleClass="w-5 h-3rem" [outlined]="true" severity="success" (onClick)="addtocart(1, 2)"></p-button>
+                <p-button styleClass="w-5 mr-3 h-3rem bg-bluegray-800 p-button border-1 border-bluegray-800  hover:shadow-5 hover:surface-800 transition-duration-500" label="Buy Now" (onClick)="directBuy()"></p-button>
+                <p-button label="Add to cart" styleClass="w-5 h-3rem" [outlined]="true" severity="success" (onClick)="sidebravisible=true"></p-button>
             </div>
         </div>  
     
@@ -134,3 +134,38 @@
     product not found
 
 </div>
+
+
+<p-sidebar [(visible)]="sidebravisible"
+    [dismissible]="true"
+    [modal]="true"
+    styleClass="p-2 "
+    position = "right"
+    [closeOnEscape]="true"
+    
+    >
+    <ng-template pTemplate="header">
+        <div class="w-full h-4rem flex align-items-center justify-content-center">
+            <h2>Add to cart</h2>
+        </div>
+    </ng-template>
+    @if(loggedin){
+    <div class="p-2 flex flex-wrap gap-2">
+    <p-button *ngFor="let cart of carts"
+              [label]="cart.name"
+              styleClass= "p-2 w-full"
+              (onClick)="addToCart(cart.id)">
+    </p-button>
+
+    </div>
+    <div class="p-2">
+        <p-button icon="pi pi-plus" label="add cart"  outlined="true" routerLink="carts" styleClass="p-2"></p-button>
+    </div>
+
+}@else {
+    <div class="p-2 w-full ">
+        <p-button styleClass="w-6 mx-auto my-4 p-2" routerLink="/login" icon = "pi pi-user" severity="success" label ="login" />
+    </div>
+}
+
+</p-sidebar>

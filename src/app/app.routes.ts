@@ -31,7 +31,7 @@ import { ShopApplicantsComponent } from './admin/admin-components/shop-applicant
 import { DataViewComponent } from './admin/admin-components/data-view/data-view.component';
 import { AdminSettingsComponent } from './admin/admin-components/admin-settings/admin-settings.component';
 import { AdminProfileComponent } from './admin/admin-components/admin-profile/admin-profile.component';
-
+import { CheckoutComponent } from './components/processing/checkout/checkout.component';
 export const routes: Routes = [
     {
         path: 'home',
@@ -67,7 +67,6 @@ export const routes: Routes = [
                 title: 'My carts',
                 canActivate: [authGuard, customerGuard]
             },
-
             {
                 path: 'deals',
                 component: DealsComponent,
@@ -77,10 +76,14 @@ export const routes: Routes = [
                 path: 'new',
                 title: 'New Products',
                 component: NewComponent,
-                
+            },
+            {
+              path: 'checkout/:id/:type',
+              component: CheckoutComponent,
+              title: 'Process my Order'
             }
         ]
-        
+
     },
     {
         path: '',
@@ -119,7 +122,7 @@ export const routes: Routes = [
                 title: 'Dashboard',
 
             },
-            
+
             {
                 path: 'list',
                 component: ProductListComponent,
@@ -193,7 +196,7 @@ export const routes: Routes = [
                 title: 'Profile'
             }
         ]
-        
+
     },
     {
         path: '**',

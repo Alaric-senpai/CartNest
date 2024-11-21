@@ -30,7 +30,7 @@ export class CardComponent implements OnInit {
     this.showcarts()
   }
 
-  // ref dynamicRef 
+  // ref dynamicRef
 
   @Input({required: true}) name:any;
   @Input({required: true}) imageurl:any;
@@ -62,7 +62,7 @@ export class CardComponent implements OnInit {
 
 
 
-  
+
 
   addToCart(product:Number, cart:Number, Quantity:Number){
 
@@ -74,8 +74,8 @@ export class CardComponent implements OnInit {
       vendor: vendorID,
       cart: cart
     }
-    
-    console.log(data)
+
+    // console.log(data)
 
     this.cartsService.addTocart(data).subscribe(
       (data:any)=>{
@@ -93,7 +93,7 @@ export class CardComponent implements OnInit {
 
       },
       (error:any)=>{
-        console.error(error)
+        // console.error(error)
         const message = error.error.message || error.error.error || error.statusText || error.message
         this.ms.add(
           {
