@@ -67,6 +67,9 @@ export class CartsComponent implements OnInit {
 
   DeleteCart(cartid:any){
     // console.log(cartdata)
+
+    // if()
+
     this.cartssertice.deletecart(cartid).subscribe(
       (data:any)=>{
         // console.log(data)

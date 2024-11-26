@@ -1,0 +1,227 @@
+<div class="grid mb-3">
+
+	<!-- all orders  -->
+	<div class="col-12 sm:col-6 lg:col-3 p-3 mb-2">
+		<div class="border-round-xl bg-teal-600 flex flex-column gap-2 card shadow-3 p-3 p-2">
+		<div class="text-right">
+			<i class="pi text-4xl text-white pi-truck">
+
+			</i>
+		</div>
+		<div class="flex flex-row align-items-center text-white justify-content-between ">
+			<h2> {{orders.length}} </h2>
+			<h3>Total orders</h3>
+		</div>
+		</div>
+	</div>
+
+	<!-- completed Orders  -->
+	<div class="col-12 sm:col-6 lg:col-3 p-3 mb-2">
+		<div class="border-round-xl bg-green-600 flex flex-column gap-2 card shadow-3 p-3 p-2">
+		<div class="text-right">
+			<i class="pi text-4xl text-white pi-verified">
+
+			</i>
+		</div>
+		<div class="flex flex-row align-items-center text-white justify-content-between ">
+			<h2> {{ completed.length }} </h2>
+			<h3>Completed orders</h3>
+		</div>
+		</div>
+	</div>
+
+	<!-- cancelled orders  -->
+	<div class="col-12 sm:col-6 lg:col-3 p-3 mb-2">
+		<div class="border-round-xl bg-red-600 flex flex-column gap-2 card shadow-3 p-3 p-2">
+		<div class="text-right">
+			<i class="pi text-4xl text-white pi-times">
+
+			</i>
+		</div>
+		<div class="flex flex-row align-items-center text-white justify-content-between ">
+			<h2> {{ cancelled.length }} </h2>
+			<h3>Cancelled orders</h3>
+		</div>
+		</div>
+	</div>
+
+	<!-- pending orders  -->
+
+	<div class="col-12 sm:col-6 lg:col-3 p-3 mb-2">
+		<div class="border-round-xl bg-yellow-600 flex flex-column gap-2 card shadow-3 p-3 p-2">
+		<div class="text-right">
+			<i class="pi text-4xl text-white pi-stopwatch">
+
+			</i>
+		</div>
+		<div class="flex flex-row align-items-center text-white justify-content-between ">
+			<h2> {{ pending.length }} </h2>
+			<h3>Pending orders</h3>
+		</div>
+		</div>
+	</div>
+</div>
+
+
+<div *ngIf="completed.length > 0">
+	<p-divider></p-divider>
+
+	<h3 class="line-height-3 m-3 text-green-500">
+		Completed orders
+	</h3>
+
+	<div class="grid mb-3">
+		<div class="col-12 sm:col-6 md:col-4 lg:col-3 p-2 mb-3" *ngFor="let item of completed; ">
+			<div class="shadow-2 border-round-xl p-3 flex flex-column gap-2 hover:shadow-4 transition-duration-500">
+				<h5>orderId: {{ item.id }} </h5>
+				<p>
+					Creation date : {{ item?.added_at | date }}
+				</p>
+				<div class="flex flex-row align-items-center">
+					<p class="w-10 p-2 overflow-scroll surface-border surface-hover border-round shadow-2 inset">
+						jj8rf8903eeoiewoiddsmmdmdlkr409eoiossmsmsmslkwe
+					</p>
+					<i class="pi pi-copy w-2 text-primary text-xl ml-2 cursor-pointer"></i>
+				</div>
+				<p-divider></p-divider>
+				<p-button label="details" styleClass="w-full p-3" text="true" (onClick)="selectOrder(item)"></p-button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div *ngIf="pending.length > 0">
+	<p-divider></p-divider>
+
+	<h3 class="line-height-3 m-3 text-yellow-600">
+		Pending orders
+	</h3>
+
+	<div class="grid mb-3">
+		<div class="col-12 sm:col-6 md:col-4 lg:col-3 p-2 mb-3" *ngFor="let item of pending; ">
+			<div class="shadow-2 border-round-xl p-3 flex flex-column gap-2 hover:shadow-4 transition-duration-500">
+				<h5>orderId: {{ item.id }} </h5>
+				<p>
+					Creation date : {{ item.added_at | date }}
+				</p>
+				<div class="flex flex-row align-items-center">
+					<p class="w-10 p-2 overflow-scroll surface-border surface-hover border-round shadow-2 inset">
+						jj8rf8903eeoiewoiddsmmdmdlkr409eoiossmsmsmslkwe
+					</p>
+					<i class="pi pi-copy w-2 text-primary text-xl ml-2 cursor-pointer"></i>
+				</div>
+				<p-divider></p-divider>
+				<p-button label="details" styleClass="w-full p-3" text="true" (onClick)="selectOrder(item)"></p-button>
+
+				<!-- <p-button label="details" styleClass="w-full p-3" text="true"></p-button> -->
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div *ngIf="cancelled.length > 0">
+
+	<p-divider></p-divider>
+
+	<h3 class="line-height-3 m-3 text-red-500">
+		Cancelled orders
+	</h3>
+
+	<div class="grid mb-3">
+		<div class="col-12 sm:col-6 md:col-4 lg:col-3 p-2 mb-3" *ngFor="let item of cancelled;">
+			<div class="shadow-2 border-round-xl p-3 flex flex-column gap-2 hover:shadow-4 transition-duration-500">
+				<h5>orderId: {{ item.id }} </h5>
+				<p>
+					Creation date : {{ item.added_at | date }}
+				</p>
+				<div class="flex flex-row align-items-center">
+					<p class="w-10 p-2 overflow-scroll surface-border surface-hover border-round shadow-2 inset">
+						jj8rf8903eeoiewoiddsmmdmdlkr409eoiossmsmsmslkwe
+					</p>
+					<i class="pi pi-copy w-2 text-primary text-xl ml-2 cursor-pointer"></i>
+				</div>
+				<p-divider></p-divider>
+				<p-button label="details" styleClass="w-full p-3" text="true" (onClick)="selectOrder(item)"></p-button>
+
+				<!-- <p-button label="details" styleClass="w-full p-3" text="true"></p-button> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<p-dialog [(visible)]="opendialog" [modal]="true" [maximizable]="false" styleClass="w-10 m-auto lg:w-5" [draggable]="false" [dismissableMask]="true" (onHide)="closedialog()">
+	<ng-template pTemplate="header">
+		<div class="w-full p-3rem text-center font-bold py-4">
+			Order Details
+		</div>
+	</ng-template>
+	<p-divider></p-divider>
+	<div class="content p-3 gap-2 flex flex-column" *ngIf="type === 'single'; else cart">
+		<img [src]="product?.main_image" alt="" class="w-full h-15rem border-round-2xl shadow-2">
+
+		<div class="flex flex-column gap-2">
+			<h3>
+				product: {{ product?.name }}
+			</h3>
+			<h4>Price ::  {{ product?.price }} </h4>
+			<h4> ordered Pieces: {{ selectedOrder?.quantity}} </h4>
+			<h4>
+				Total Price {{ selectedOrder?.totalprice }}
+			</h4>
+		</div>
+		orderId: {{ selectedOrder?.id }}
+		<p>
+			Order Type: {{ selectedOrder?.type }}
+		</p>
+	</div>
+	<ng-template #cart>
+		<div>
+		<p-carousel
+			[value]="cartGoods"
+			[numVisible]="3"
+			[numScroll]="3"
+			[circular]="true"
+			[responsiveOptions]="responsiveOptions"
+			autoplayInterval="3000">
+				<ng-template let-product pTemplate="item">
+						<div class="border-1 surface-border border-round m-2 p-3  min-w-full w-30rem">
+							<div class="mb-3">
+								<div class="relative mx-auto">
+									<img
+										[src]="getProductInfo(product?.product_id)?.main_image"
+										[alt]="product.name"
+										class="w-full border-round h-15rem" />
+
+								</div>
+							</div>
+							<div class="mb-3 font-medium">
+								{{ getProductInfo(product.product_id)?.name }}
+							</div>
+							<div class="flex justify-content-between align-items-center">
+							<div class="mt-0 font-semibold text-xl">
+								{{ '$' + getProductInfo(product?.product_id)?.price }}
+							</div>
+								<span>
+									<p-button icon="pi pi-heart" severity="secondary" [outlined]="true" styleClass="p-2" />
+									<p-button icon="pi pi-shopping-cart" styleClass=" p-2 ml-2" [routerLink]="['/home//product', product?.product_id]" />
+								</span>
+							</div>
+						</div>
+				</ng-template>
+		</p-carousel>
+
+		</div>
+	</ng-template>
+	<p-divider></p-divider>
+	<ng-template pTemplate="footer">
+		<div class="p-3 flex flex-row gap-3 justify-content-end">
+			<p-button icon="pi pi-times" styleClass="p-2" label="cancel order" (onClick)="cancelOrder()" [disabled]="selectedOrder?.status !== 'draft'" > </p-button>
+			<p-button icon="pi pi-times" styleClass="p-2" label="Complete order" (onClick)="completeOrder()" [disabled]="selectedOrder?.status !== 'draft'" > </p-button>
+
+		</div>
+	</ng-template>
+</p-dialog>
+
+<p-toast  [life]="3000"></p-toast>

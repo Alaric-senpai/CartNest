@@ -10,6 +10,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProductsManagementService } from '../../../services/products-management.service';
 import { CommonModule } from '@angular/common';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { cartorder, OrderService } from '../../../services/order.service';
 @Component({
   selector: 'nest-cart',
   standalone: true,
@@ -22,9 +23,11 @@ export class CartComponent implements OnInit {
   errorAvailable!: boolean;
   goodserror: any;
   cartid: any;
+  cart:any;
   cartGoods: any = [];
   loading: boolean = true;
   products: any = [];
+  editable!:boolean
   totalcost: number = 0; // Use a number type for precise calculations
 
   constructor(
@@ -34,7 +37,8 @@ export class CartComponent implements OnInit {
     private cartService: CartsService,
     private router: Router,
     private route: ActivatedRoute,
-    private productsService: ProductsManagementService
+    private productsService: ProductsManagementService,
+    private orderService:OrderService
   ) {}
 
   ngOnInit(): void {
@@ -42,9 +46,27 @@ export class CartComponent implements OnInit {
       this.cartid = params.get('id');
       if (this.cartid) {
         this.fetchGoods();
-        this.fetchCartProducts();
+        this.fetchCartProducts()
+        this.getCart()
       }
     });
+  }
+
+
+  private getCart(){
+    this.cartService.getCartData(this.cartid).subscribe(
+      (data:any)=>{
+        this.cart = data.cart
+        if(this.cart.is_editable === 0){
+          this.editable =false
+        }else{
+          this.editable = true
+        }
+      },
+      (error:any)=>{
+        console.error(error)
+      }
+    )
   }
 
   private fetchCartProducts() {
@@ -99,7 +121,6 @@ export class CartComponent implements OnInit {
 
     this.placeOrder()
 
-    this.router.navigate(['home/checkout', this.cartid, 'cart']);
   }
 
 
@@ -173,7 +194,34 @@ export class CartComponent implements OnInit {
 
 
   private placeOrder(){
-    
+    const order:cartorder = {
+      cart:this.cartid,
+      price: this.totalcost
+    }
+
+    console.log(order)
+    this.orderService.placeCartOrder(order).subscribe(
+      (data:any)=>{
+        console.log(data)
+        const orderid =data.orderid
+        this.router.navigate(['home/checkout', this.cartid, 'cart', orderid]);
+
+      },
+      (error:any)=>{
+        console.log(error)
+        let err =error
+        this.ms.add(
+          {
+            icon: 'pi pi-times',
+            summary: "checkout Error",
+            severity: 'error',
+            detail: err.error.message|| err.message || error.message || error.statusText,
+            styleClass: 'p-2',
+            contentStyleClass: 'gap-2'
+          }
+        )
+      }
+    )
   }
 
 }

@@ -20,12 +20,13 @@ import { DialogModule } from 'primeng/dialog';
 import { CartsService } from '../../../services/carts.service';
 import { cartItem } from '../../../interfaces/cart';
 import { SidebarModule } from 'primeng/sidebar';
+import { OrderService, singleOrder } from '../../../services/order.service';
 
 @Component({
   selector: 'nest-product',
   standalone: true,
   imports: [SkeletonModule, CardComponent, SkeletonCardComponent, ButtonModule, RatingModule, FormsModule,
-    DividerModule, ToastModule, ImageModule, TagModule, CommonModule, PaginatorModule, DialogModule, SidebarModule
+    DividerModule, ToastModule, ImageModule, TagModule, CommonModule, PaginatorModule, DialogModule, SidebarModule, DialogModule
    ],
    providers: [MessageService],
   templateUrl: './product.component.html',
@@ -50,7 +51,7 @@ export class ProductComponent implements OnInit {
   loggedin  = sessionStorage.getItem("token")
 
   constructor(private MessageService:MessageService, private route:ActivatedRoute, private productService:ProductsManagementService,
-    private cartsService:CartsService, private router:Router){}
+    private cartsService:CartsService, private router:Router, private orderService:OrderService){}
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(
@@ -107,8 +108,33 @@ export class ProductComponent implements OnInit {
 
   directBuy(){
     // place order syntax goes here 
+    const order:singleOrder = {
+      product: this.productid,
+      vendor: this.product.vendor,
+      quantity: this.count(),
+      price: this.count() * this.product.price
 
-    this.router.navigate(['/home/checkout', this.productid, 'single'])
+    }
+
+    this.orderService.placeSingleOrder(order).subscribe(
+      (data:any)=>{
+        const orderid = data.orderid
+        console.log(data);
+        this.router.navigate(['/home/checkout', this.productid, 'single', orderid])
+      },
+      (error:any)=>{
+        this.MessageService.add(
+          {
+            icon: 'pi pi-times',
+            severity: 'error',
+            styleClass: "p-2",
+            summary: 'Direct buy error',
+            detail: error.error.message || error.statusText
+          }
+        )
+      }
+    )
+
 
   }
 

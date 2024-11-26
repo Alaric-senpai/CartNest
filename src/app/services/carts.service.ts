@@ -17,6 +17,11 @@ export class CartsService {
     return this.http.get<any[]>(url)
   }
 
+  getCartData(id:any):Observable<any>{
+    const url = `${this.apiurl}/cartnest/carts/cart?cart=${id}`
+    return this.http.get<any>(url)
+  }
+
   getcartgoods(cartid:any):Observable<any[]>{
     const url = `${this.apiurl}/cartnest/carts/cartGoods?cart_id=${cartid}`
     return this.http.get<any[]>(url)

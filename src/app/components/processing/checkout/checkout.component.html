@@ -1,3 +1,134 @@
-<div class="w-full p-3">
-	Checkout
+<div class=" w-11 m-auto mt-3" >
+
+	<div class="grid">
+		<div class="col-12 lg:col-4 mb-4" *ngIf="isCart; else single">
+			<div class="relative">
+				<div class="w-full p-2 text-center font-medium surface-overlay hover:surface-hover">
+					Cart Goods
+				</div>
+				<div class="m-2 w-full shadow-2 p-2">
+					<p-scroller
+					[items]="cartGoods"
+					[itemSize]="cartGoods.length"
+					scrollHeight="500px"
+					styleClass="w-full scrollbar"
+	
+					>
+						<ng-template pTemplate="item" let-item >
+							<div class="m-2 w-11 p-2 surface-overlay cursor-pointer shadow-2 border-round inline-flex gap-2">
+								<img [src]="getProductData(item?.product_id)?.main_image" alt="" class="w-4rem h-4rem border-round ">
+								<div>
+									<h5 class="m-2">
+										{{ getProductData(item?.product_id)?.name }}
+									</h5>
+	
+									<h4> $
+										{{
+											getProductData(item?.product_id)?.price * item?.quantity
+										}}.00
+									</h4>
+								</div>
+							</div>
+						</ng-template>
+	
+					</p-scroller>
+				</div>
+			</div>
+		</div>
+		<ng-template #single>
+			<div class="col-12 lg:col-4 mb-4">
+				<p-card styleClass="p-3 lg:w-10 m-auto">
+					<ng-template pTemplate="header">
+						<img [src]="product?.main_image" alt="" class="border-round shadow-2 w-full h-15rem">
+					</ng-template>
+					<p-divider></p-divider>
+					<div class="content p-2">
+						<h2>
+							{{
+								product?.name 
+							}}
+						</h2>
+						<p-divider></p-divider>
+
+						<h4 class="my-2">
+							OrderPrice: $ {{ order?.totalprice}}.00
+						</h4>
+					</div>
+				</p-card>
+			</div>
+		</ng-template>
+		<div class="col-12 lg:col-4 mb-4">
+			<div class="surface-overlay p-3 ">
+				<h3 class="m-2 w-full text-center mt-4 font-bold text-2xl text-primary">
+					Choose payment Method
+				</h3>
+	
+				<div class="mb-4">
+					<h4 class="mx-3 mb-5"> 
+						Available Methods
+					</h4>
+					<div class="flex gap-2 flex-wrap">
+						<p-button *ngFor="let method of ['PayPal', 'Google Pay', 'Apple Pay', 'Stripe', 'Bank Transfer']"
+								[label]="method"
+								styleClass="p-2 h-3rem w-full"
+								(click)="onPaymentMethodSelect(method)">
+						</p-button>
+					</div>
+				</div>
+				<div class="mt-4">
+					<h4 class="mx-3 mb-5"> 
+						Shipping Methods
+					</h4>
+					<div class="flex gap-2 flex-wrap">
+						<p-button *ngFor="let method of ['G4S', 'Post Office', 'Personal pickup', 'Boda', 'Courier']"
+								[label]="method"
+								styleClass="p-2 h-3rem w-full"
+								(click)="onShippingMethodSelect(method)">
+						</p-button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-12 lg:col-4 mb-4 p-3">
+			<div class=" shadow-4 p-2 border-round surface-overlay">
+					<h3 class="text-center">
+						CheckOut 
+					</h3>
+
+					<div class="w-11 m-auto border-round-xl p-3 shadow-3">
+						<h3 class="m-2 text-center">Payment details</h3>
+
+						<p-divider styleClass="w-10 m-auto font-bold h-2rem" ></p-divider>
+
+						<p class="line-height-4 font-medium text-xl">
+							Payment Method: {{ selectedPaymentMethod }}
+						</p>
+						<p-divider styleClass="w-10 m-auto font-bold h-2rem" ></p-divider>
+
+						<p class="line-height-4 font-medium text-xl">
+							payment Code : {{ paymentCode }}
+						</p>
+						<p-divider styleClass="w-10 m-auto font-bold h-2rem" ></p-divider>
+						<h3 class="m-2 text-center">Payment details</h3>
+						<p-divider styleClass="w-10 m-auto font-bold h-2rem" ></p-divider>
+						<p class="line-height-4 font-medium text-xl">
+							Shipping Method: {{ shipping }}
+						</p>
+						<p-divider styleClass="w-10 m-auto font-bold h-2rem" ></p-divider>
+						
+					</div>
+
+					<div class="w-11 m-auto my-2 flex flex-row p-4 text-xl text-base justify-content-between align-items-center bg-yellow-300 border-round-xl">
+						validate my shipping Address
+
+						<p-button icon="pi pi-chevron-right" styleClass="p-3" rounded="true"></p-button>
+					</div>
+
+					<p-button styleClass="w-full p-3 h-3rem mt-4" [disabled]="!(processingDone())" severity="contrast" label="Place Order" (onClick)="checkout()"></p-button>
+			</div>
+		</div>
+	</div>
+
 </div>
+<p-toast [life]="3000"></p-toast>

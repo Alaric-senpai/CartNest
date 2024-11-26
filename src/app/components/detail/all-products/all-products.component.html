@@ -1,0 +1,22 @@
+<div class="w-full p-4">
+    <h3 class="font-bold text-center">ALL AVAILABLE PRODUCTS</h3>
+</div>
+
+
+<div class="grid m-auto w-12 md:w-10 mt-4" *ngIf="paginatedProducts.length > 0">
+    <div class="col-12 sm:col-6 md:col-6 lg:col-4 xl:col-3" *ngFor="let product of paginatedProducts; trackBy: trackByIndex">
+        <nest-card [imageurl]="product.main_image" [name]="product.name" [price]="product.price" [productid]="product.id" [vendor]="product.vendor"></nest-card>
+    </div>
+</div>
+
+<div *ngIf="products.length > 0">
+    <p-paginator
+        styleClass="w-10 m-auto mt-3"
+        (onPageChange)="onPageChange($event)"
+        [first]="first"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords}">
+    </p-paginator>
+</div>

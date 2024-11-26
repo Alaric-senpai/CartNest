@@ -47,12 +47,12 @@ export class AdminHomeComponent {
       routerLink: 'dataview'
     },
     {
-      label: 'Applications',
+      label: 'Vendors',
       icon: 'pi pi-users',
-      routerLink: 'applicants',
+      routerLink: 'vendors',
     },
     {
-      label: 'Setings',
+      label: 'System settings',
       icon: 'pi pi-cog',
       routerLink: 'settings'
     },

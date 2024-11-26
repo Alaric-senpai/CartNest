@@ -46,3 +46,9 @@ html{
 .disabled-field{
     @include styleclass('w-9 my-2 surface-overlay surface-border border-round-xl hover:surface-hover h-3rem px-3 font-bold text-xl text-base');
 }
+
+.scrollbar{
+    ::-webkit-scrollbar{
+        display: block !important;
+    }
+}

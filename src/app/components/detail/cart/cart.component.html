@@ -1,7 +1,11 @@
 <h2 class="m-3 font-bold text-2xl md:text-4xl">
-    My Cart
+    {{cart.name }}
 </h2>
 
+
+<div class="w-11 m-auto my-3 bg-yellow-200 text-xl p-5 " *ngIf="!editable">
+    this cart is archived and readonly 
+</div>
 <div class="mt-3 w-full px-3">
     <div class="grid" *ngIf="cartGoods.length > 0 && !loading">
         <div class="col-12 md:col-12 lg:col-8">
@@ -27,13 +31,14 @@
                             <div class="flex-custom gap-2">
                                 <p-toast [life]="1000" position="top-right"></p-toast>
                                 <p-button icon="pi pi-heart" [rounded]="true" severity="warning"></p-button>
-                                <p-button icon="pi pi-trash" [rounded]="true" severity="danger" (onClick)="removeFromcart($event, item?.product_id)" ></p-button>
+                                <p-button icon="pi pi-trash" [rounded]="true" severity="danger" (onClick)="removeFromcart($event, item?.product_id)" [disabled]="!editable"></p-button>
                             </div>
                             <div class="flex-custom gap-3 cursor-pointer">
-                                <p-button icon="pi pi-minus" [rounded]="true" [outlined]="true" styleClass="text-sm w-2rem h-2rem" severity="danger" (onClick)="subItem(item?.product_id, item?.quantity)"></p-button>
+                                <p-button icon="pi pi-minus" [rounded]="true" [outlined]="true" styleClass="text-sm w-2rem h-2rem" severity="danger" (onClick)="subItem(item?.product_id, item?.quantity)" [disabled]="!editable"></p-button>
                                 <i class="font-bold">{{ item?.quantity }}</i>
-                                <p-button icon="pi pi-plus" [rounded]="true" [outlined]="true" styleClass="text-sm w-2rem h-2rem" severity="success"
-                                (onClick)="addItem(item?.product_id, item?.quantity)"></p-button>
+                                <p-button icon="pi pi-plus" [rounded]="true" [outlined]="true" styleClass="text-sm w-2rem h-2rem" severity="success" [disabled]="!editable"
+                                (onClick)="addItem(item?.product_id, item?.quantity)"  ></p-button>
+                                
                             </div>
                         </div>
                     </div>
@@ -62,7 +67,8 @@
                     <h4 class="flex-custom gap-2">Total</h4>
                     <h4>$ {{ totalcost| number:'1.2-2'  }}</h4>
                 </div>
-                <button pButton class="w-full border-0 appearance-none outline-none h-3rem" label="Checkout Now" (click)="checkout()" severity="contrast" [raised]="false" [rounded]="true"></button>
+                <button pButton class="w-full border-0 appearance-none outline-none h-3rem" label="Checkout Now" (click)="checkout()" severity="contrast" [raised]="false" [rounded]="true" *ngIf="editable;"></button>
+
             </div>
         </div>
     </div>

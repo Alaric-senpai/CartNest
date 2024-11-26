@@ -27,9 +27,7 @@ import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'nest-navbar',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, DropdownModule, InputGroupModule, InputTextModule, FormsModule, ButtonModule, MenuModule,
-    DialogModule, AvatarGroupModule, AvatarModule, FloatLabelModule, PasswordModule, DividerModule, InputGroupAddonModule,
-    SidebarModule, ReactiveFormsModule, ToastModule 
+  imports: [CommonModule, FontAwesomeModule, DropdownModule, InputGroupModule, InputTextModule, FormsModule, ButtonModule, MenuModule, DialogModule, AvatarGroupModule, AvatarModule, FloatLabelModule, PasswordModule, DividerModule, InputGroupAddonModule, SidebarModule, ReactiveFormsModule, ToastModule
     ],
   providers: [MessageService],
   templateUrl: './navbar.component.html',
@@ -51,7 +49,7 @@ export class NavbarComponent implements OnInit {
   constructor(private categoryManagement: CategoryManagementService, private router: Router, private constants: ConstantsService,
     private fb:FormBuilder, private authService:AuthService, private ms:MessageService, private route:ActivatedRoute
   ) {
-    this.visible = constants.loginvisible 
+    this.visible = constants.loginvisible
     this.initloginform();
     this.checkifloggedin()
 
@@ -73,8 +71,9 @@ export class NavbarComponent implements OnInit {
     },
     {
 
-      label: 'Notification',
-      icon: 'pi pi-bell'
+      label: 'Orders',
+      icon: 'pi pi-truck',
+      routerLink: '/profile/orders'
     },
     {
       label: 'logout',
@@ -114,6 +113,7 @@ export class NavbarComponent implements OnInit {
         sessionStorage.setItem('role', role)
 
 
+        this.visible = false
         // const decoded = jwtDecode(usertoken, true)
         if(role == 'admin'){
           this.router.navigate(['/admin'])
@@ -132,15 +132,11 @@ export class NavbarComponent implements OnInit {
                   this.router.navigate(['/Shopregister'])
                 }else{
                 this.router.navigate(['/vendor'])
-                  
                 }
               }else{
                 this.router.navigate(['/Shopregister'])
-
               }
-
         }
-
       },
       (error:any)=>{
         const message = error.error.message || error.name
@@ -164,7 +160,7 @@ export class NavbarComponent implements OnInit {
     this.categoryManagement.getallcategories().subscribe(
     (data:any) =>{
       this.categories = data.categories
-  
+
     },
     (error) =>{
     console.log(error.message);

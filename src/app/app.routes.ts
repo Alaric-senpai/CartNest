@@ -32,6 +32,11 @@ import { DataViewComponent } from './admin/admin-components/data-view/data-view.
 import { AdminSettingsComponent } from './admin/admin-components/admin-settings/admin-settings.component';
 import { AdminProfileComponent } from './admin/admin-components/admin-profile/admin-profile.component';
 import { CheckoutComponent } from './components/processing/checkout/checkout.component';
+import { ProfileComponent } from './components/user_related/profile/profile.component';
+import { ProfileHomeComponent } from './components/user_related/profile-home/profile-home.component';
+import { OrdersComponent } from './components/user_related/orders/orders.component';
+import { UserSettingsComponent } from './components/user_related/user-settings/user-settings.component';
+import { AllProductsComponent } from './components/detail/all-products/all-products.component';
 export const routes: Routes = [
     {
         path: 'home',
@@ -78,12 +83,45 @@ export const routes: Routes = [
                 component: NewComponent,
             },
             {
-              path: 'checkout/:id/:type',
+              path: 'checkout/:id/:type/:orderid',
               component: CheckoutComponent,
               title: 'Process my Order'
+            },
+            {
+                path: 'products',
+                component: AllProductsComponent,
+                title: 'All products'
             }
         ]
 
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate:[authGuard],
+        children: [
+            // {
+            //     path: 'dashboard',
+            //     component: ProfileHomeComponent,
+            //     title: 'user dashboard'
+            // },
+            {
+                path: 'orders',
+                component: OrdersComponent,
+                title: 'My orders',
+
+            },
+            {
+                path: 'settings',
+                component: UserSettingsComponent,
+                title: 'Account settings'
+            },
+            {
+                path: '',
+                redirectTo: 'orders',
+                pathMatch: "full"
+            }
+        ]
     },
     {
         path: '',
@@ -176,7 +214,7 @@ export const routes: Routes = [
                 title:'Admin dashboard'
             },
             {
-                path: 'applicants',
+                path: 'vendors',
                 component:ShopApplicantsComponent,
                 title: 'Vendor registrations'
             },
