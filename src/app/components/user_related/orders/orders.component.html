@@ -1,3 +1,8 @@
+
+<h3 class="m-3">Orders Summary</h3>
+
+<p-divider></p-divider>
+
 <div class="grid mb-3">
 
 	<!-- all orders  -->
@@ -10,7 +15,7 @@
 		</div>
 		<div class="flex flex-row align-items-center text-white justify-content-between ">
 			<h2> {{orders.length}} </h2>
-			<h3>Total orders</h3>
+			<h3>Total</h3>
 		</div>
 		</div>
 	</div>
@@ -25,7 +30,7 @@
 		</div>
 		<div class="flex flex-row align-items-center text-white justify-content-between ">
 			<h2> {{ completed.length }} </h2>
-			<h3>Completed orders</h3>
+			<h3>Completed </h3>
 		</div>
 		</div>
 	</div>
@@ -40,7 +45,7 @@
 		</div>
 		<div class="flex flex-row align-items-center text-white justify-content-between ">
 			<h2> {{ cancelled.length }} </h2>
-			<h3>Cancelled orders</h3>
+			<h3>Cancelled </h3>
 		</div>
 		</div>
 	</div>
@@ -56,7 +61,7 @@
 		</div>
 		<div class="flex flex-row align-items-center text-white justify-content-between ">
 			<h2> {{ pending.length }} </h2>
-			<h3>Pending orders</h3>
+			<h3>Pending </h3>
 		</div>
 		</div>
 	</div>
@@ -82,7 +87,11 @@
 						jj8rf8903eeoiewoiddsmmdmdlkr409eoiossmsmsmslkwe
 					</p>
 					<i class="pi pi-copy w-2 text-primary text-xl ml-2 cursor-pointer"></i>
+
 				</div>
+					<p>
+						Order Type: {{ item?.type }}
+					</p>
 				<p-divider></p-divider>
 				<p-button label="details" styleClass="w-full p-3" text="true" (onClick)="selectOrder(item)"></p-button>
 			</div>
@@ -110,7 +119,11 @@
 						jj8rf8903eeoiewoiddsmmdmdlkr409eoiossmsmsmslkwe
 					</p>
 					<i class="pi pi-copy w-2 text-primary text-xl ml-2 cursor-pointer"></i>
+
 				</div>
+					<p>
+						Order Type: {{ item?.type }}
+					</p>
 				<p-divider></p-divider>
 				<p-button label="details" styleClass="w-full p-3" text="true" (onClick)="selectOrder(item)"></p-button>
 
@@ -141,7 +154,11 @@
 						jj8rf8903eeoiewoiddsmmdmdlkr409eoiossmsmsmslkwe
 					</p>
 					<i class="pi pi-copy w-2 text-primary text-xl ml-2 cursor-pointer"></i>
+
 				</div>
+					<p>
+						Order Type: {{ item?.type }}
+					</p>
 				<p-divider></p-divider>
 				<p-button label="details" styleClass="w-full p-3" text="true" (onClick)="selectOrder(item)"></p-button>
 
@@ -186,7 +203,7 @@
 			[responsiveOptions]="responsiveOptions"
 			autoplayInterval="3000">
 				<ng-template let-product pTemplate="item">
-						<div class="border-1 surface-border border-round m-2 p-3  min-w-full w-30rem">
+						<div class="border-1 surface-border border-round m-2 p-3   w-30rem">
 							<div class="mb-3">
 								<div class="relative mx-auto">
 									<img
@@ -196,10 +213,16 @@
 
 								</div>
 							</div>
-							<div class="mb-3 font-medium">
+							<div class="mb-3 font-medium gap-2 flex flex-column">
 								{{ getProductInfo(product.product_id)?.name }}
+								<p>
+									Bought pieces: {{ product?.quantity }}
+								</p>
+								<p>
+									Total cost{{ product?.quantity * getProductInfo(product?.product_id)?.price }}
+								</p>
 							</div>
-							<div class="flex justify-content-between align-items-center">
+							<div class="flex w-10 m-auto justify-content-between align-items-center">
 							<div class="mt-0 font-semibold text-xl">
 								{{ '$' + getProductInfo(product?.product_id)?.price }}
 							</div>

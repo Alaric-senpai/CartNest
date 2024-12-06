@@ -32,7 +32,7 @@ export class NewArrivalComponent implements OnInit{
       (data:any)=>{
         this.loading = false
         this.products = data.products
-        this.products = this.products.slice(0, 8)
+        this.products = this.products.slice(0, 20)
         // console.log(data)
       },
       (error:any) =>{

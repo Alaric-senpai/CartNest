@@ -30,6 +30,7 @@ import { AdminDashboardComponent } from './admin/admin-components/admin-dashboar
 import { ShopApplicantsComponent } from './admin/admin-components/shop-applicants/shop-applicants.component';
 import { DataViewComponent } from './admin/admin-components/data-view/data-view.component';
 import { AdminSettingsComponent } from './admin/admin-components/admin-settings/admin-settings.component';
+import {SupportComponent } from './admin/admin-components/support/support.component';
 import { AdminProfileComponent } from './admin/admin-components/admin-profile/admin-profile.component';
 import { CheckoutComponent } from './components/processing/checkout/checkout.component';
 import { ProfileComponent } from './components/user_related/profile/profile.component';
@@ -232,6 +233,11 @@ export const routes: Routes = [
                 path: 'profile',
                 component: AdminProfileComponent,
                 title: 'Profile'
+            },
+            {
+                path: 'support',
+                component: SupportComponent,
+                title: 'Customer support'
             }
         ]
 

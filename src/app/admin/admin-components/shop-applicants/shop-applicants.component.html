@@ -1,11 +1,13 @@
-<div class="w-full h-3rem p-3 px-4 my-4">
+
+<div *ngIf="shops">
+	<div class="w-full h-3rem p-3 px-4 my-4" >
 	<h2>
 		Unverified vendors
 	</h2>
 </div>
 
 <div class="grid">
-@if(shops.length > 0 ){
+ @if(shops.length > 0 ){
 	<div class="col-12 sm:col-6 md:col-4 p-1  lg:col-3 my-3"  *ngFor="let shop of shops">
 		<p-card stylClass="  surface-overlay shadow-5 hover:shadow-7 p-1 overflow-hidden border-round border-2 border-solid border-surface-200 hover:border-teal-400 ">
 			<ng-template pTemplate="header">
@@ -41,8 +43,8 @@
 		loading
 	</div>
 
-	<div class="col-12 p-3 text-primary text-2xl " *ngIf="shops.length == 0 && !(shoperror) && !loading ">
-		No inverified vendors
+	<div class="col-12 p-3 text-green-400 text-2xl " *ngIf="shops.length == 0 && !(shoperror) && !loading ">
+		No unverified vendors
 	</div>
 	
 	<div class="col-12 p-3" *ngIf="shoperror">
@@ -50,6 +52,7 @@
 	</div>
 </div>
 
+</div>
 
 <div class="w-full h-3rem p-3 px-4 my-4">
 	<h2>
@@ -57,5 +60,135 @@
 	</h2>
 </div>
 
+<div class="grid">
+	<!-- {{allshops | json }} -->
+	<div class="col-12 md:col-4 lg:col-4 p-3" *ngFor="let shop of allshops">
+		<div class="card shadow-2 hover:shadow-5 transition-duration-400 surface-overlay border-round-xl p-2 h-full">
+			<img src="images/setup1.png" alt="" class="w-full h-13rem border-round">
+			<div class="pt-2">
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						Shop name
+					</p>
+					<h4>
+					{{ shop.shop_name }}
+						
+					</h4>
+				</div>
+<!-- 				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						Business registration number
+					</p>
+					<h4>
+					{{ shop.business_registration_number }}
+						
+					</h4>
+				</div> -->
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						Member since
+					</p>
+					<h4>
+					{{ shop.created_at | date }}
+						
+					</h4>
+				</div>
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						Official email
+					</p>
+					<h4>
+					{{ shop.shop_email }}
+						
+					</h4>
+				</div>
+				<p-button styleClass="p-2 w-full" text="true" severity="info" label="More Info" (onClick)="toggle()"></p-button>
+		</div>
+	</div>
+</div>
+
 <p-toast [life]="3000"></p-toast>
 
+<p-sidebar [(visible)]="show" position="bottom" styleClass="h-full">
+	<ng-template pTemplate="header">
+		<div class="w-full p-2 text-center">
+			<h2 class="uppercase">
+				Shop details
+			</h2>
+		</div>
+	</ng-template>
+
+	<div class="content">
+		<div class="grid p-3">
+			<div class="col-12 md:col-6">
+			 <img src="images/setup1.png" alt="" class="w-full h-23rem border-round">
+			 <div>
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						name
+					</p>
+					<h4>
+					shop name		 	
+					</h4>
+				</div>
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						name
+					</p>
+					<h4>
+					shop name		 	
+					</h4>
+				</div>
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						name
+					</p>
+					<h4>
+					shop name		 	
+					</h4>
+				</div>
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						name
+					</p>
+					<h4>
+					shop name		 	
+					</h4>
+				</div>
+			 </div>
+			</div>
+			<div class="col-12 md:col-6">
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						name
+					</p>
+					<h4>
+					shop name		 	
+					</h4>
+				</div>
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						name
+					</p>
+					<h4>
+					shop name		 	
+					</h4>
+				</div>
+				<div class="field border-bottom-1 p-2 hover:surface-hover surface-border">
+					<p class="text-xl mb-2">
+						name
+					</p>
+					<h4>
+					shop name		 	
+					</h4>
+				</div>
+				<div class="w-full p-2 flex gap-3">
+					<p-button styleClass="p-2 h-3rem" label="investigate" severity="danger"></p-button>
+					<p-button styleClass="p-2 h-3rem" label="Deactivste" severity="danger"></p-button>
+					<p-button styleClass="p-2 h-3rem" label="reccommend" severity="info"></p-button>
+					<p-button styleClass="p-2 h-3rem" label="cancel shop" severity="danger"></p-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</p-sidebar>

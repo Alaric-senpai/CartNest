@@ -15,12 +15,14 @@ import { ProductsManagementService } from '../../../services/products-management
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment'
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @Component({
   selector: 'nest-new-product',
   standalone: true,
   imports: [FileUploadModule, ButtonModule, CommonModule, BadgeModule, InputTextModule, SelectButtonModule, InputGroupModule, InputGroupAddonModule,
-    ReactiveFormsModule, FormsModule, ToastModule
+    ReactiveFormsModule, FormsModule, ToastModule, EditorModule
   ],
   templateUrl: './new-product.component.html',
   styleUrls: ['./new-product.component.scss'],
@@ -33,6 +35,9 @@ export class NewProductComponent implements OnInit {
   brands: any = [];
   categories: any = [];
   caterror!: boolean;
+
+  public apikey = environment.tinymce
+  public init = environment.initmce
 
   constructor(
     private categoryService: CategoryManagementService, 
@@ -166,6 +171,6 @@ this.MessageService.add(
     }
   }
   reroute() {
-    this.router.navigate(['list'])
+    this.router.navigate(['/vendor/list'])
   }
 }

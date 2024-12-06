@@ -57,6 +57,11 @@ export class AdminHomeComponent {
       routerLink: 'settings'
     },
     {
+      label: 'Customer support',
+      icon: 'pi pi-headphones',
+      routerLink: 'support'
+    },
+    {
       label: 'Profile',
       icon: 'pi pi-user',
       routerLink: 'profile'

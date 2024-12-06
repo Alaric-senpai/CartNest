@@ -18,7 +18,9 @@
           <!-- Product Description -->
           <div class="mb-3">
             <label for="description">Product Description</label>
-            <textarea formControlName="description" cols="30" rows="15" class="input-field mt-3"></textarea>
+          <editor [apiKey]="apikey" [init]="init" formControlName="description"></editor>
+
+            <!-- <textarea formControlName="description" cols="30" rows="15" class="input-field mt-3"></textarea> -->
           </div>
         </div>
 

@@ -12,6 +12,7 @@ export class ShopService {
   constructor(private http:HttpClient) { }
 
   private apiurl = environment.apiurl + '/cartnest/shops'
+  private genUrl = environment.apiurl + '/cartnest/general';
 
   createshop(shop:Shop):Observable<any>{
     const url = `${this.apiurl}/new`
@@ -21,6 +22,12 @@ export class ShopService {
   unveriedshops():Observable<any[]>{
     const url = `${this.apiurl}/unverified`
     return this.http.get<any[]>(url);
+
+  }
+
+  allshops():Observable<any>{
+    const url = `${this.genUrl}/shops`
+    return this.http.get<any>(url)
 
   }
 

@@ -78,17 +78,21 @@
 
             </p-rating>
             <h4 class="font-bold my-2 mt-4">Product description</h4>
-            <p class="text-justify w-11">
+            <div [innerHtml]="product.description"></div>
+            <!-- <p class="text-justify w-11">
                 {{ product.description }}
-            </p>
+            </p> -->
 
             <h4 class="font-bold my-3">
-                Item quantity 
+                Item quantity {{ product?.instock }}
+            </h4>
+            <h4>
+                Items to purchase
             </h4>
             <div class="surface-200 max-w-max p-2 border-round-3xl">
                 <p-button [disabled]="checkifdisabled()" icon="pi pi-minus" severity="danger" styleClass="p-1 w-2rem mr-2 h-2rem" [outlined]="true" [rounded]="true" (onClick)="decrement()"></p-button>
                 <span class="font-bold text-3xl text-primary"> {{count()}} </span>
-                <p-button icon="pi pi-plus" severity="info" styleClass="p-1 w-2rem ml-2 h-2rem" [outlined]="true" [rounded]="true" (onClick)="increment()"></p-button>
+                <p-button icon="pi pi-plus" severity="info" styleClass="p-1 w-2rem ml-2 h-2rem" [outlined]="true" [rounded]="true" (onClick)="increment()" [disabled]="checkifdisabled()"></p-button>
 
             </div>
 
@@ -100,7 +104,7 @@
 
             <div class="mt-4">
                 <p-toast></p-toast>
-                <p-button styleClass="w-5 mr-3 h-3rem bg-bluegray-800 p-button border-1 border-bluegray-800  hover:shadow-5 hover:surface-800 transition-duration-500" label="Buy Now" (onClick)="directBuy()"></p-button>
+                <p-button styleClass="w-5 mr-3 h-3rem bg-bluegray-800 p-button border-1 border-bluegray-800  hover:shadow-5 hover:surface-800 transition-duration-500" label="Buy Now" (onClick)="directBuy()" [disabled]="product?.instock < 1"></p-button>
                 <p-button label="Add to cart" styleClass="w-5 h-3rem" [outlined]="true" severity="success" (onClick)="sidebravisible=true"></p-button>
             </div>
         </div>  

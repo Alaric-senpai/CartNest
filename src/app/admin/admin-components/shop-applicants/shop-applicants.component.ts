@@ -6,26 +6,35 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SidebarModule} from 'primeng/sidebar'
 @Component({
   selector: 'nest-shop-applicants',
   standalone: true,
-  imports: [CardModule, ButtonModule, ToastModule, CommonModule, RouterModule],
+  imports: [CardModule, ButtonModule, ToastModule, CommonModule, RouterModule, SidebarModule],
   templateUrl: './shop-applicants.component.html',
   styleUrl: './shop-applicants.component.scss',
   providers: [MessageService]
 })
 export class ShopApplicantsComponent implements OnInit {
   shops: any = []
+  allshops: any = []
   loading: boolean = true;
   shoperror: boolean = false;
+  show:boolean = false
   errormessage: any;
   constructor(private shopsService:ShopService, private ms:MessageService) {
     
   }
 
   ngOnInit(): void {
+    this.getAllShops()
     this.fetchshops()
   }
+
+  toggle(){
+    this.show = !this.show
+  }
+
   fetchshops() {
     this.shopsService.unveriedshops().subscribe(
       (data: any) => {
@@ -40,6 +49,16 @@ export class ShopApplicantsComponent implements OnInit {
         this.errormessage = error.error.messsage || error.statusText || error.name
       }
     )
+  }
+
+  getAllShops(){
+    this.shopsService.allshops().subscribe(
+      (data:any)=>{
+        this.allshops = data.shops
+      },
+      (error:any)=>{
+        this.shoperror = error
+      })
   }
 
   updateshop(status:any , vendor:Number){

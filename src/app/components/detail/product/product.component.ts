@@ -191,7 +191,7 @@ export class ProductComponent implements OnInit {
     }
 
   checkifdisabled(){
-    if(this.count() < 1 ){
+    if(this.count() < 1 || this.product?.instock < 1 || this.product?.instock <= this.count() ){
       return true;
     }else{
       return false;
