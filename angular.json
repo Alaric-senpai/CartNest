@@ -63,12 +63,12 @@
               {
                 "input": "node_modules/primeng/resources/themes/lara-dark-green/theme.css",
                 "bundleName": "lara-dark-green",
-                "inject":false
+                "inject": false
               },
               {
                 "input": "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
                 "bundleName": "lara-light-blue",
-                "inject":false
+                "inject": false
               },
               {
                 "input": "node_modules/primeng/resources/themes/lara-light-green/theme.css",
@@ -80,7 +80,6 @@
                 "bundleName": "lara-light-teal",
                 "inject": false
               }
-
             ],
             "scripts": []
           },
@@ -115,10 +114,12 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "CartNest:build:production"
+              "buildTarget": "CartNest:build:production",
+              "proxyConfig": "proxy.conf.json"
             },
             "development": {
-              "buildTarget": "CartNest:build:development"
+              "buildTarget": "CartNest:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -173,12 +174,12 @@
               {
                 "input": "node_modules/primeng/resources/themes/lara-dark-green/theme.css",
                 "bundleName": "lara-dark-green",
-                "inject":false
+                "inject": false
               },
               {
                 "input": "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
                 "bundleName": "lara-light-blue",
-                "inject":false
+                "inject": false
               },
               {
                 "input": "node_modules/primeng/resources/themes/lara-light-green/theme.css",
@@ -190,7 +191,6 @@
                 "bundleName": "lara-light-teal",
                 "inject": false
               }
-              
             ],
             "scripts": []
           }
