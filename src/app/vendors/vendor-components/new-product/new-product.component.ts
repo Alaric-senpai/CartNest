@@ -106,7 +106,6 @@ export class NewProductComponent implements OnInit {
       },
       (error) => {
         this.caterror = true;
-        console.log(error);
       }
     );
   }
@@ -118,7 +117,6 @@ export class NewProductComponent implements OnInit {
       },
       (error: any) => {
         this.brandserror = true;
-        console.log(error);
       }
     );
   }
@@ -126,7 +124,6 @@ export class NewProductComponent implements OnInit {
   onSubmit() {
     if (this.productform.valid) {
       const product:Product  = this.productform.value
-      console.log(product)
       this.ProductsService.addProduct(product).subscribe(
         (data:any)=>{
           const message = data.message

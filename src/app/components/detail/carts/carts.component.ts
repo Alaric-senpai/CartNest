@@ -48,7 +48,6 @@ export class CartsComponent implements OnInit {
   }
   addCart(){
     const cartdata:Cart = this.cartform.value
-    // console.log(cartdata)
     this.cartssertice.newCart(cartdata).subscribe(
       (data:any)=>{
         this.showdialog = false
@@ -56,7 +55,6 @@ export class CartsComponent implements OnInit {
         this.getcarts()
       },
       (error:any)=>{
-        // console.log(error)
         this.showdialog = false
         const message = error.error.message || error.name
         this.ms.add({severity: 'error', summary: 'error detected', detail: message, icon: 'pi pi-x', life:2000, styleClass: 'p-2', contentStyleClass: 'm-1' })
@@ -66,18 +64,14 @@ export class CartsComponent implements OnInit {
   }
 
   DeleteCart(cartid:any){
-    // console.log(cartdata)
 
-    // if()
 
     this.cartssertice.deletecart(cartid).subscribe(
       (data:any)=>{
-        // console.log(data)
         this.ms.add({severity: 'success', summary: 'Successfull process', detail: data.message, icon: 'pi pi-check', life:2000, styleClass: 'p-2', contentStyleClass: 'm-1' })
         this.getcarts()
       },
       (error:any)=>{
-        // console.log(error)
         const message = error.error.error || error.error.message || error.name
         this.ms.add({severity: 'error', summary: 'error detected', detail: message, icon: 'pi pi-x', life:2000, styleClass: 'p-2', contentStyleClass: 'm-1' })
 

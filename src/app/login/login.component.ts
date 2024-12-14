@@ -89,10 +89,8 @@ export class LoginComponent implements OnInit {
 
       },
       (error:any)=>{
-        const message = error.error.message || error.name
-        console.log(message)
+        const message = error.error.message || error.statusText
         this.ms.add({severity: 'error', summary: 'Error detected', detail:`${message}`, icon: 'pi pi-alert', life: 3000, styleClass: "p-3" })
-        console.log(error)
       }
     )
 

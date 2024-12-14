@@ -104,7 +104,6 @@ export class NavbarComponent implements OnInit {
 
     this.authService.userlogin(email, password).subscribe(
       (data:any)=>{
-        // console.log(data)
 
         const usertoken = data.token
 
@@ -139,10 +138,8 @@ export class NavbarComponent implements OnInit {
         }
       },
       (error:any)=>{
-        const message = error.error.message || error.name
-        console.log(message)
+        const message = error.error.message || error.statusText
         this.ms.add({severity: 'error', summary: 'Error detected', detail:`${message}`, icon: 'pi pi-alert', life: 3000, styleClass: "p-3" })
-        console.log(error)
       }
     )
 
@@ -163,7 +160,13 @@ export class NavbarComponent implements OnInit {
 
     },
     (error) =>{
-    console.log(error.message);
+      this.ms.add({
+        icon: 'pi pi-times',
+        summary: 'Load error',
+        detail: 'category load failed, reload page ',
+        styleClass: 'p-2',
+        contentStyleClass: 'p-2'
+      })
     }
     )
   }

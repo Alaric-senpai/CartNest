@@ -36,7 +36,6 @@ export class OrdersComponent implements OnInit {
 
   selectOrder(order:any){
     this.selectedOrder = order
-    console.log(this.selectedOrder)
     this.opendialog = true
     this.setupPreview()
 

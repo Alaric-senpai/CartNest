@@ -21,7 +21,6 @@ export class AdminHomeComponent {
   menuvisible:boolean = true;
 
   togglemenu(){
-    // console.log(this.menuvisible)
     if(this.menuvisible == true){
       this.menuvisible = false
     }else{

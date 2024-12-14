@@ -21,7 +21,6 @@ export class OrderService {
 
   placeCartOrder(order:cartorder):Observable<any>{
     //route:: new/cart
-    console.log(order)
     const url =`${this.apiurl}new/cart`
     return this.http.post(url, order)
 

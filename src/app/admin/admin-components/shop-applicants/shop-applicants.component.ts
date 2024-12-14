@@ -38,12 +38,10 @@ export class ShopApplicantsComponent implements OnInit {
   fetchshops() {
     this.shopsService.unveriedshops().subscribe(
       (data: any) => {
-        console.log(data)
         this.loading = false
         this.shops = data.shops
       },
       (error: any) => {
-        console.error(error)
         this.loading = false
         this.shoperror = true
         this.errormessage = error.error.messsage || error.statusText || error.name

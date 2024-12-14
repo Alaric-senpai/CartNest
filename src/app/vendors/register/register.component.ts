@@ -69,10 +69,8 @@ export class RegisterComponent implements OnInit {
 
   registerShop(){
     const shopData:Shop = this.registerForm.value
-    console.log(shopData)
     this.shopservice.createshop(shopData).subscribe(
       (data: any)=>{
-        console.log(data)
         const shoptoken = data.shoptoken
         sessionStorage.setItem('shopidentifier', shoptoken)
         const message = data.message

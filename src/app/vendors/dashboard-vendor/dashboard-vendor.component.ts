@@ -217,7 +217,6 @@ export class DashboardVendorComponent {
 
     this.categoryservice.newcategory(data).subscribe(
       (data: any) => {
-        console.log(data)
         this.addcat = false
         const message = data.message
         this.ms.add({
@@ -248,7 +247,6 @@ export class DashboardVendorComponent {
 
     this.brandsService.newBrand(data).subscribe(
       (data: any) => {
-        console.log(data)
         this.brandsidebar = false
         const message = data.message
         this.ms.add({

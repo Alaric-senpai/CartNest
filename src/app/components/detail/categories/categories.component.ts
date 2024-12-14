@@ -27,7 +27,6 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getallcategories().subscribe(
       (data:any) =>{
         this.categories = data.categories
-        console.log(this.categories)
       },
       (error:any) =>{
         this.categorieserror =true;

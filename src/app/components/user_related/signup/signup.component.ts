@@ -69,7 +69,6 @@ export class SignupComponent implements OnInit {
   register(){
     const data = this.registerform.controls
 
-    console.log(data)
 
     const email  = data['email'].value
     const role = data['role'].value

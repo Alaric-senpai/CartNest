@@ -45,7 +45,6 @@ export class AuthService {
 
 
   sendResetToken(email:string):Observable<any>{
-    console.log(email)
     const url = `${this.apiurl}/cartnest/auth/user/token/send?email=${email}`
     return this.http.post(url, email)
   }
@@ -76,7 +75,6 @@ export class AuthService {
 
   token = sessionStorage.getItem('token')
   private setSession(authResult: any): void {
-    console.log(authResult)
     sessionStorage.setItem('token', authResult.token);
     if(authResult.shoptoken){
       sessionStorage.setItem('shoptoken', authResult.shoptoken)
@@ -87,7 +85,6 @@ export class AuthService {
   }
 
   private handleError(error: any) {
-    console.log(error)
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
       // Client-side error

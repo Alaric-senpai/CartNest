@@ -117,7 +117,6 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    // console.log('i was clicked');
 
     this.placeOrder()
 
@@ -199,16 +198,13 @@ export class CartComponent implements OnInit {
       price: this.totalcost
     }
 
-    console.log(order)
     this.orderService.placeCartOrder(order).subscribe(
       (data:any)=>{
-        console.log(data)
         const orderid =data.orderid
         this.router.navigate(['home/checkout', this.cartid, 'cart', orderid]);
 
       },
       (error:any)=>{
-        console.log(error)
         let err =error
         this.ms.add(
           {
